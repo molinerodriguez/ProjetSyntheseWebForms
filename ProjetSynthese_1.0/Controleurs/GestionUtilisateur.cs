@@ -27,21 +27,23 @@ namespace ProjetSynthese_1._0.Controleurs
                 }
                 else
                 {
-                    //Afficher message d'erreur sur la form login
+                    (log.FindControl("lblResultatLogin") as Label).Text = "Login invalide";
+
                 }
             }
             catch (Exception ex)
             {
-                //Transferer à la page d'erreur
+                (log.FindControl("lblResultatLogin") as Label).Text = "Erreure: " + ex;
+
             }
-            
+
         }
 
         //Rechercher un utilisateur
         private static Utilisateur Rechercher(string user, string pass)//Exception à propager ici
         {
             Utilisateur utilisateur = null;
-            using (var sim =new SIM_Context() /*SIM_Context.getInstance()*/)
+            using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
             {
                 var result = from u in sim.Utilisateurs
                              where u.nomUtilisateur == user && u.motDePasse == pass
@@ -60,15 +62,16 @@ namespace ProjetSynthese_1._0.Controleurs
         public static void SetupEspaceTravail(SiteMaster master)
         {
             Utilisateur user = master.Session["utilisateur"] as Utilisateur;
-            if (user!=null)
+            if (user != null)
             {
                 (master.FindControl("nomUser") as HtmlGenericControl).InnerText = user.nomUtilisateur;
 
-                if (user.type=="admin")//Gestionnaire ou directeur
+                if (user.type == "admin")//Gestionnaire ou directeur
                 {
                     //https://www.youtube.com/watch?v=xvrr-gZ2UJQ
                     //Menus
                     Menu menu = master.FindControl("menuPrincipale") as Menu;
+
                     menu.Items.Add(new MenuItem("Article"));
                     menu.Items.Add(new MenuItem("Fournisseur"));
                     menu.Items.Add(new MenuItem("Commande"));
@@ -103,7 +106,7 @@ namespace ProjetSynthese_1._0.Controleurs
                     #endregion
 
                     menu.Items[3].ChildItems.Add(new MenuItem("Nouveau bon de distribution"));
-                    menu.Items[3].ChildItems.Add(new MenuItem("Modifier bon de distribution")); 
+                    menu.Items[3].ChildItems.Add(new MenuItem("Modifier bon de distribution"));
                 }
                 if (user.type == "caissier")
                 {
