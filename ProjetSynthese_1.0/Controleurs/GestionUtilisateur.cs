@@ -82,7 +82,7 @@ namespace ProjetSynthese_1._0.Controleurs
                     menu.Items[0].ChildItems.Add(new MenuItem("Rechercher article"));
                     menu.Items[0].ChildItems[1].NavigateUrl = "~/RechercherArticle.aspx";
 
-                    menu.Items[0].ChildItems.Add(new MenuItem("Modifier article"));
+                    menu.Items[0].ChildItems.Add(new MenuItem("Fixer qte critique"));
                     menu.Items[0].ChildItems[2].NavigateUrl = "";
                     #endregion
 
