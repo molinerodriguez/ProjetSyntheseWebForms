@@ -14,6 +14,8 @@
         <asp:Label ID="lblUserName" runat="server" Text="Nom d'utilisateur "/><asp:TextBox ID="txtUser" runat="server"/><br/>
         <asp:Label ID="lblMotDePasse" runat="server" Text="Mot de passe "/><asp:TextBox ID="txtPass" runat="server"/><br/> 
         <asp:Button ID="btnSeconnecter" runat="server" Text="Se connecter" OnClick="btnSeconnecter_Click"/>
+
+
     </div>
     </form>
 </body>
