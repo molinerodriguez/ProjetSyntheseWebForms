@@ -69,6 +69,7 @@ namespace ProjetSynthese_1._0.Controleurs
                     //https://www.youtube.com/watch?v=xvrr-gZ2UJQ
                     //Menus
                     Menu menu = master.FindControl("menuPrincipale") as Menu;
+
                     menu.Items.Add(new MenuItem("Article"));
                     menu.Items.Add(new MenuItem("Fournisseur"));
                     menu.Items.Add(new MenuItem("Commande"));
@@ -99,7 +100,7 @@ namespace ProjetSynthese_1._0.Controleurs
                     menu.Items[2].ChildItems.Add(new MenuItem("Recevoir commande"));
 
                     menu.Items[3].ChildItems.Add(new MenuItem("Nouveau bon de distribution"));
-                    menu.Items[3].ChildItems.Add(new MenuItem("Modifier bon de distribution")); 
+                    menu.Items[3].ChildItems.Add(new MenuItem("Modifier bon de distribution"));
                 }
                 if (user.type == "caissier")
                 {
