@@ -39,6 +39,7 @@ namespace ProjetSynthese_1._0.Controleurs
                     });
                     int n = sim.SaveChanges();//Procedure stockee à intégrer ...
                     frmArticle.TxtNum.Text = article.numArticle.ToString();
+                    int b = 1;
                     //Ajouter aussi un message de confirmation
                 }
             }
