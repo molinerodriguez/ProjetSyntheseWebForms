@@ -34,7 +34,7 @@ namespace ProjetSynthese_1._0.Controleurs
             }
         }
 
-        //Rechercher un article par nom et par telephone
+        //Rechercher un fournisseur par nom et par telephone
         private static Fournisseur Rechercher(string nom, string telephone)
         {
             Fournisseur fournisseur = null;
@@ -50,6 +50,19 @@ namespace ProjetSynthese_1._0.Controleurs
                 }
             }
             return fournisseur;
+        }
+
+        //Rechercher tous les fournisseurs
+        private static List<Fournisseur> Rechercher()
+        {
+            List<Fournisseur> listeFournisseur = null;
+            using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
+            {
+                listeFournisseur=(from f in sim.Fournisseurs
+                 select f
+                 ).ToList();
+            }
+            return listeFournisseur;
         }
     }
 }

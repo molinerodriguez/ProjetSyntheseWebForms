@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ProjetSynthese_1._0.Controleurs;
 
 namespace ProjetSynthese_1._0
 {
@@ -16,7 +17,7 @@ namespace ProjetSynthese_1._0
 
         protected void btnEnregistrer_Click(object sender, EventArgs e)
         {
-
+            GestionFournisseur.Enregistrer(this);
         }
 
         #region
