@@ -128,6 +128,7 @@
     <Content Include="NouvelArticle.aspx" />
     <Content Include="RechercherArticle.aspx" />
     <Content Include="ModifierArticle.aspx" />
+    <Content Include="NouveauFournisseur.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -188,6 +189,7 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controleurs\GestionArticle.cs" />
+    <Compile Include="Controleurs\GestionFournisseur.cs" />
     <Compile Include="Controleurs\GestionUtilisateur.cs" />
     <Compile Include="Accueil.aspx.cs">
       <DependentUpon>Accueil.aspx</DependentUpon>
@@ -265,6 +267,13 @@
     </Compile>
     <Compile Include="ModifierArticle.aspx.designer.cs">
       <DependentUpon>ModifierArticle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NouveauFournisseur.aspx.cs">
+      <DependentUpon>NouveauFournisseur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NouveauFournisseur.aspx.designer.cs">
+      <DependentUpon>NouveauFournisseur.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
