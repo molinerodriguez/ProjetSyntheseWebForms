@@ -37,7 +37,8 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage=">> nom d'utilisateur obligatoire" 
                         ControlToValidate="txtUser" ForeColor="Red"></asp:RequiredFieldValidator><br />
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage=">> mot de passe obligatoire"
-                        ControlToValidate="txtPass" ForeColor="Red"></asp:RequiredFieldValidator>
+                        ControlToValidate="txtPass" ForeColor="Red"></asp:RequiredFieldValidator><br />
+                    <asp:Label ID="lblResultatLogin" runat="server" Text="" ForeColor="Red"></asp:Label>
                 </form>
 
             </div>
