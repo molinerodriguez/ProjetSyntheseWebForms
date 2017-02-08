@@ -53,7 +53,7 @@ namespace ProjetSynthese_1._0.Controleurs
         }
 
         //Rechercher tous les fournisseurs
-        private static List<Fournisseur> Rechercher()
+        public static List<Fournisseur> Rechercher()
         {
             List<Fournisseur> listeFournisseur = null;
             using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
@@ -64,5 +64,7 @@ namespace ProjetSynthese_1._0.Controleurs
             }
             return listeFournisseur;
         }
+
+        public static void ChargerFourniseur(NouvelleCommande frm) { }
     }
 }
