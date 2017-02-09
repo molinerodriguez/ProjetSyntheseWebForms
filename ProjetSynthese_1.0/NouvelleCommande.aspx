@@ -15,11 +15,13 @@
     <asp:Label ID="lblDateCommande" runat="server" Text="Date commande "></asp:Label>
     <asp:Calendar ID="calDateCommande" runat="server" Height="16px" Width="127px"></asp:Calendar><br/>
 
-    <hr=5>
+    <hr/>
     <asp:Label ID="lblArticle" runat="server" Text="Article "></asp:Label>
-    <asp:TextBox ID="txtArticle" runat="server"></asp:TextBox><br/>
+    <asp:TextBox ID="txtArticle" runat="server"></asp:TextBox>
+    <asp:Button ID="btnRechercher" runat="server" Text="Rechercher" OnClick="btnRechercher_Click"/>
+    <br/>
 
-    <asp:GridView ID="gridArticles" runat="server" Height="50px" Width="125px">
+    <asp:GridView ID="gridArticles" runat="server" Height="50px" Width="125px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gridArticles_SelectedIndexChanged">
     </asp:GridView><br/>
 
      <asp:Label ID="lblNumArticle" runat="server" Text="Numero "></asp:Label>
@@ -28,17 +30,20 @@
     <asp:Label ID="lblNomArticle" runat="server" Text="Nom "></asp:Label>
     <asp:TextBox ID="txtNom" runat="server" Enabled="false"></asp:TextBox><br/>
 
+    <asp:Label ID="lblPrix" runat="server" Text="Prix "></asp:Label>
+    <asp:TextBox ID="txtPrix" runat="server" Enabled="false"></asp:TextBox><br/>
+
     <asp:Label ID="lblQuantite" runat="server" Text="Quantite "></asp:Label>
     <asp:TextBox ID="txtQuantite" runat="server"></asp:TextBox><br/>
 
-    <asp:Button ID="btnAjouter" runat="server" Text="Ajouter" />
+    <asp:Button ID="btnAjouter" runat="server" Text="Ajouter" OnClick="btnAjouter_Click" />
 
-    <hr=5>
+    <hr/>
 
     <asp:GridView ID="gridViewCommande" runat="server" Height="50px" Width="125px">
     </asp:GridView><br/>
 
-    <hr=5>
+    <hr/>
     <asp:Button ID="btnEnregistrer" runat="server" Text="Enregistrer" />
 
 </asp:Content>

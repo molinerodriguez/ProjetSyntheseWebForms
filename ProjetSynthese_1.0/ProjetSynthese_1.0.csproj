@@ -191,6 +191,7 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controleurs\GestionArticle.cs" />
+    <Compile Include="Controleurs\GestionCommande.cs" />
     <Compile Include="Controleurs\GestionFournisseur.cs" />
     <Compile Include="Controleurs\GestionUtilisateur.cs" />
     <Compile Include="Accueil.aspx.cs">

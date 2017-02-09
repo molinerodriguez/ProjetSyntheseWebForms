@@ -112,6 +112,15 @@ namespace ProjetSynthese_1._0 {
         protected global::System.Web.UI.WebControls.TextBox txtArticle;
         
         /// <summary>
+        /// Contrôle btnRechercher.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRechercher;
+        
+        /// <summary>
         /// Contrôle gridArticles.
         /// </summary>
         /// <remarks>
@@ -155,6 +164,24 @@ namespace ProjetSynthese_1._0 {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNom;
+        
+        /// <summary>
+        /// Contrôle lblPrix.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPrix;
+        
+        /// <summary>
+        /// Contrôle txtPrix.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPrix;
         
         /// <summary>
         /// Contrôle lblQuantite.

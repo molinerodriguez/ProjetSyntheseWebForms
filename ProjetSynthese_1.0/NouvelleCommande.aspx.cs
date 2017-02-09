@@ -14,11 +14,8 @@ namespace ProjetSynthese_1._0
         {
             if (!IsPostBack)
             {
-                //Charger foutnisseur
-                this.cmbFournisseur.DataSource = GestionFournisseur.Rechercher();
-                this.cmbFournisseur.DataTextField = "nom";
-                this.cmbFournisseur.DataBind();
-                //Fin
+                GestionFournisseur.ChargerFourniseur(this);
+                GestionCommande.InitialiserCommande(this);
             }
             
         }
@@ -26,7 +23,19 @@ namespace ProjetSynthese_1._0
         protected void cmbFournisseur_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Afficher info fournisseur
-            this.txtInfoFpurnisseur.Text = this.cmbFournisseur.SelectedValue;
+            GestionFournisseur.AfficherInfosFournisseur(this);
+        }
+
+        //protected void txtArticle_TextChanged(object sender, EventArgs e)
+        //{
+        //    //Lister des articles
+        //    GestionArticle.ListerArticles(this);
+        //}
+
+        protected void gridArticles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Afficher un article
+            GestionArticle.Afficher(this);
         }
 
         #region proprietes
@@ -40,9 +49,23 @@ namespace ProjetSynthese_1._0
         public GridView GridArticles { get { return this.gridArticles; } }
         public TextBox TxtNum { get { return this.txtNum; } }
         public TextBox TxtNom { get { return this.txtNom; } }
+        public TextBox TxtPrix { get { return this.txtPrix; } }
         public TextBox TxtQuantite { get { return this.txtQuantite; } }
 
         public GridView GridViewCommande { get { return this.gridViewCommande; } }
+
+
         #endregion
+
+        protected void btnAjouter_Click(object sender, EventArgs e)
+        {
+            GestionCommande.Ajouter(this);
+        }
+
+        protected void btnRechercher_Click(object sender, EventArgs e)
+        {
+            //Lister des articles
+            GestionArticle.ListerArticles(this);
+        }
     }
 }
