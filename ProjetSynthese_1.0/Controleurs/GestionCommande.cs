@@ -38,10 +38,6 @@ namespace ProjetSynthese_1._0.Controleurs
                 cmd.LigneCommandes.Add(ligne);
                 cmd.montant += prix * quantite;
                 frm.TxtMontant.Text = cmd.montant.ToString();
-                //frm.GridViewCommande.DataBind();
-                //int n=frm.GridViewCommande.Rows.Count;
-                //frm.GridViewCommande.DataSource = cmd.LigneCommandes;
-                //frm.GridViewCommande.DataBind();
             }
             else
             {
