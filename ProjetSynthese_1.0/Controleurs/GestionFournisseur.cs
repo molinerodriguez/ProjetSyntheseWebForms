@@ -51,6 +51,24 @@ namespace ProjetSynthese_1._0.Controleurs
             }
             return fournisseur;
         }
+        
+        //Rechercher un fournisseur par nom
+        private static Fournisseur Rechercher(string nom)
+        {
+            Fournisseur fournisseur = null;
+            using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
+            {
+                IEnumerable<Fournisseur> result = from f in sim.Fournisseurs
+                                                  where f.nom == nom
+                                                  select f;
+
+                if (result.Count() > 0)
+                {
+                    fournisseur = result.First();
+                }
+            }
+            return fournisseur;
+        }
 
         //Rechercher tous les fournisseurs
         public static List<Fournisseur> Rechercher()
@@ -65,6 +83,19 @@ namespace ProjetSynthese_1._0.Controleurs
             return listeFournisseur;
         }
 
-        public static void ChargerFourniseur(NouvelleCommande frm) { }
+        //Methode chargeant le fournisseur dans le DropDownList
+        public static void ChargerFourniseur(NouvelleCommande frm)
+        {
+            frm.CmbFournisseur.DataSource = GestionFournisseur.Rechercher();
+            frm.CmbFournisseur.DataTextField = "nom";
+            frm.CmbFournisseur.DataBind();
+        }
+
+        //Affichage des infos d'un fournisseur selectionne
+        public static void AfficherInfosFournisseur(NouvelleCommande frm)
+        {
+            Fournisseur f = Rechercher(frm.CmbFournisseur.SelectedValue);
+            frm.TxtInfoFournisseur.Text = "Nom :" + f.nom + "\n" + "Adresse :" + f.adresse + "\n" + "Telephone :" + f.telephone;
+        }
     }
 }
