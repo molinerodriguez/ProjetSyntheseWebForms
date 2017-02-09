@@ -127,6 +127,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Images\fruits.jpg" />
     <Content Include="NouvelArticle.aspx" />
     <Content Include="RechercherArticle.aspx" />
     <Content Include="ModifierArticle.aspx" />
