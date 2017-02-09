@@ -27,13 +27,13 @@ namespace ProjetSynthese_1._0.Controleurs
                 }
                 else
                 {
-                    (log.FindControl("lblResultatLogin") as Label).Text = "Login invalide";
+                    (log.FindControl("lblResultatLogin") as Label).Text = "Authentification invalide";
 
                 }
             }
             catch (Exception ex)
             {
-                (log.FindControl("lblResultatLogin") as Label).Text = "Erreure: " + ex;
+                (log.FindControl("lblResultatLogin") as Label).Text = "Erreure: <br>" + ex;
 
             }
 
@@ -64,7 +64,9 @@ namespace ProjetSynthese_1._0.Controleurs
             Utilisateur user = master.Session["utilisateur"] as Utilisateur;
             if (user != null)
             {
-                (master.FindControl("nomUser") as HtmlGenericControl).InnerText = user.nomUtilisateur;
+                (master.FindControl("btnUtilisateur") as Button).Text = "Utilisateur: " + user.nomUtilisateur;
+                (master.FindControl("btnDeconnexion") as Button).Text = "Deconnexion!";
+
 
                 if (user.type == "admin")//Gestionnaire ou directeur
                 {

@@ -18,7 +18,7 @@ namespace ProjetSynthese_1._0.Controleurs
             //TextBox description = frmArticle.FindControl("txtDescription") as TextBox;
             TextBox description = frmArticle.TxtDescription;
 
-            if (Rechercher(description: description.Text, nom: nom.Text)==null)
+            if (Rechercher(description: description.Text, nom: nom.Text) == null)
             {
                 //TextBox categorie = frmArticle.FindControl("txtCategorie") as TextBox;
                 TextBox categorie = frmArticle.TxtCategorie;
@@ -29,7 +29,7 @@ namespace ProjetSynthese_1._0.Controleurs
 
                 using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
                 {
-                    Article article=sim.Articles.Add(new Article
+                    Article article = sim.Articles.Add(new Article
                     {
                         nom = nom.Text,
                         description = description.Text,
@@ -39,13 +39,14 @@ namespace ProjetSynthese_1._0.Controleurs
                     });
                     int n = sim.SaveChanges();//Procedure stockee à intégrer ...
                     frmArticle.TxtNum.Text = article.numArticle.ToString();
-                    
+
                     //Ajouter aussi un message de confirmation
+                    frmArticle.LblResultatSauvegarde.Text = "L'article a été sauvegardé avec succes!";
                 }
             }
             else
             {
-                //Afficher Article existe déjà
+                frmArticle.LblResultatSauvegarde.Text = "Attention! L'article existe déjà!";
             }
         }
 
@@ -67,42 +68,36 @@ namespace ProjetSynthese_1._0.Controleurs
             return article;
         }
 
-        //Rechercher un article par nom
-        private static List<Article> Rechercher(string nom)
-        {
-            List<Article> listArticle = null;
-            using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
-            {
-                IEnumerable<Article> result = from a in sim.Articles
-                                              where a.nom == nom
-                                              select a;
-                if (result.Count() > 0)
-                {
-                    listArticle = result.ToList();
-                }
-            }
-            
-            return listArticle;
-        }
+        //Rechercher un article par numéro
+        //private static Article Rechercher(int num)
+        //{
+        //    Article article = null;
+        //    var sim = SIM_Context.getInstance();
+        //    IEnumerable<Article> result = from a in sim.Articles
+        //                                  where a.numArticle==num
+        //                                  select a;
+        //    if (result.Count() > 0)
+        //    {
+        //        article = result.First();
+        //    }
+        //    return article;
+        //}
 
 
-        //Lister articles dans le fenetre d'article
         public static void ListerArticles(RechercherArticle frmArticle)
         {
             if (!frmArticle.TxtNom.Text.Equals(""))
             {
-                frmArticle.GridArticles.DataSource = Rechercher(frmArticle.TxtNom.Text);
-                frmArticle.GridArticles.DataBind();
-            }
-        }
+                using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
+                {
+                    IEnumerable<Article> articles = from a in sim.Articles
+                                                    where a.nom == frmArticle.TxtNom.Text
+                                                    select a;
 
-        //Lister articles dans le fenetre de commande
-        public static void ListerArticles(NouvelleCommande frm)
-        {
-            if (!frm.TxtArticle.Text.Equals(""))
-            {
-                frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text);
-                frm.GridArticles.DataBind();
+                    frmArticle.GridArticles.DataSource = articles.ToList();
+                    frmArticle.GridArticles.DataBind();
+                }
+
             }
         }
 
@@ -132,15 +127,7 @@ namespace ProjetSynthese_1._0.Controleurs
                     //frmArticle.Server.Transfer("RechercherArticle.aspx");
                 }
             }
-            
-        }
 
-        public static void Afficher(NouvelleCommande frm)
-        {
-            GridViewRow myRow = frm.GridArticles.SelectedRow;
-            frm.TxtNum.Text = myRow.Cells[1].Text;
-            frm.TxtNom.Text = myRow.Cells[2].Text;
-            frm.TxtPrix.Text= myRow.Cells[5].Text;
         }
     }
 }

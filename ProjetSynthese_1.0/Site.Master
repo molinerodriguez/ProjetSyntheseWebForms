@@ -4,7 +4,7 @@
 
 <html lang="fr">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Projet de synthese</title>
@@ -13,7 +13,7 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/Site.css" rel="stylesheet" />
@@ -44,52 +44,29 @@
 
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
-                <!--
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">Nom de l'application</a>
-                </div>
-                -->
-                
-                <!--
-                    <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Accueil</a></li>
-                        <li><a runat="server" href="~/About">À propos de</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
-                    </ul>
-                </div>
-                -->
-<%--                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action 1</a></li>
-                                <li><a href="#">Action 2</a></li>
-                                <li><a href="#">Action 3</a></li>
-                            </ul>
-                        </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <asp:Menu ID="menuPrincipale" runat="server" Orientation="Horizontal">
+                        </asp:Menu>
                     </div>
-                </div>--%>
-                <asp:Menu ID="menuPrincipale" runat="server" Orientation="Horizontal" CssClass="dropdown">
+                    <div class="col-md-2 text-info">
+                        <asp:Button ID="btnUtilisateur" runat="server" Text="Mode anonyme" CssClass="btn btn-group-justified"/>
 
-                </asp:Menu>
-                <div class="nav navbar-text navbar-right"><span id="nomUser" runat="server"></span></div>
+                    </div>
+                     <div class="col-md-2 text-info">
+                         <asp:Button ID="btnDeconnexion" runat="server" Text="Déconnecté" OnClick="btnDeconnexion_Click" CssClass="btn btn-group-justified"/>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- Contenue Site -->
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Mon ASP.NET Application</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Projet de synthèse [Rodriguez Molin && Dan-Ghenadie Roman]</p>
             </footer>
         </div>
 
