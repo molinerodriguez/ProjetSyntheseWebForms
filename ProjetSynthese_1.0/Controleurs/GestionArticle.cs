@@ -68,42 +68,37 @@ namespace ProjetSynthese_1._0.Controleurs
             return article;
         }
 
-        //Rechercher un article par nom
-        private static List<Article> Rechercher(string nom)
-        {
-            List<Article> listArticle = null;
-            using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
-            {
-                IEnumerable<Article> result = from a in sim.Articles
-                                              where a.nom == nom
-                                              select a;
-                if (result.Count() > 0)
-                {
-                    listArticle = result.ToList();
-                }
-            }
-            
-            return listArticle;
-        }
-
+        //Rechercher un article par numéro
+        //private static Article Rechercher(int num)
+        //{
+        //    Article article = null;
+        //    var sim = SIM_Context.getInstance();
+        //    IEnumerable<Article> result = from a in sim.Articles
+        //                                  where a.numArticle==num
+        //                                  select a;
+        //    if (result.Count() > 0)
+        //    {
+        //        article = result.First();
+        //    }
+        //    return article;
+        //}
+        
 
         //Lister articles dans le fenetre d'article
         public static void ListerArticles(RechercherArticle frmArticle)
         {
             if (!frmArticle.TxtNom.Text.Equals(""))
             {
-                frmArticle.GridArticles.DataSource = Rechercher(frmArticle.TxtNom.Text);
-                frmArticle.GridArticles.DataBind();
-            }
-        }
+                using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
+                {
+                    IEnumerable<Article> articles = from a in sim.Articles
+                                                    where a.nom==frmArticle.TxtNom.Text
+                                                    select a;
 
-        //Lister articles dans le fenetre de commande
-        public static void ListerArticles(NouvelleCommande frm)
-        {
-            if (!frm.TxtArticle.Text.Equals(""))
-            {
-                frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text);
-                frm.GridArticles.DataBind();
+                    frmArticle.GridArticles.DataSource = articles.ToList();
+                    frmArticle.GridArticles.DataBind();
+                }
+                
             }
         }
 
@@ -134,14 +129,6 @@ namespace ProjetSynthese_1._0.Controleurs
                 }
             }
             
-        }
-
-        public static void Afficher(NouvelleCommande frm)
-        {
-            GridViewRow myRow = frm.GridArticles.SelectedRow;
-            frm.TxtNum.Text = myRow.Cells[1].Text;
-            frm.TxtNom.Text = myRow.Cells[2].Text;
-            frm.TxtPrix.Text= myRow.Cells[5].Text;
         }
     }
 }
