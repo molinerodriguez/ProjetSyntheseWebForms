@@ -17,7 +17,10 @@ namespace ProjetSynthese_1._0
 
         protected void btnEnregistrer_Click(object sender, EventArgs e)
         {
-            GestionArticle.Enregister(this);
+            if (Page.IsValid)
+            {
+                GestionArticle.Enregister(this);
+            }
         }
 
         #region proprietes
@@ -49,6 +52,12 @@ namespace ProjetSynthese_1._0
         public TextBox TxtPxVente
         {
             get { return this.txtPxVente; }
+        }
+
+        public Label LblResultatSauvegarde { get
+            {
+                return this.lblResultatSauvegarde;
+            }
         }
         #endregion
     }

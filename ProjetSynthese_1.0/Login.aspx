@@ -23,7 +23,7 @@
                             <div class="form-group col-xs-12">
                                 <label><span class="text-danger" style="margin-right: 5px;">*</span>Nom utilisateur:</label>
                                 <div class="input-group">
-                                    <asp:TextBox ID="txtUser" runat="server" type="text" class="form-control" placeholder="obligatoire" />
+                                    <asp:TextBox ID="txtUser" runat="server" type="text" Text="Dan" class="form-control" placeholder="obligatoire" />
                                     <span class="input-group-btn">
                                         <label class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></label>
                                     </span>
@@ -36,7 +36,7 @@
                             <div class="form-group col-xs-12">
                                 <label><span class="text-danger" style="margin-right: 5px;">*</span>Mot de passe:</label>
                                 <div class="input-group">
-                                    <asp:TextBox ID="txtPass" runat="server" type="password" class="form-control" placeholder="obligatoire" />
+                                    <asp:TextBox ID="txtPass" runat="server" type="password" Text="Roman" class="form-control" placeholder="obligatoire" />
                                     <span class="input-group-btn">
                                         <label class="btn btn-primary"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></label>
                                     </span>

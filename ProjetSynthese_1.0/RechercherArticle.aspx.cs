@@ -59,5 +59,10 @@ namespace ProjetSynthese_1._0
             get { return this.gridArticles; }
         }
         #endregion
+
+        protected void btnRechercher_Click(object sender, EventArgs e)
+        {
+            GestionArticle.ListerArticles(this);
+        }
     }
 }

@@ -17,5 +17,11 @@ namespace ProjetSynthese_1._0
                 GestionUtilisateur.SetupEspaceTravail(this);
             }
         }
+
+        protected void btnDeconnexion_Click(object sender, EventArgs e)
+        {
+            //ici il faut detruire l<utilisateur
+            Server.Transfer("~/Login.aspx");
+        }
     }
 }

@@ -1,0 +1,14 @@
+﻿.Grid {
+}
+
+.Grid td {
+border: 0px; 
+}
+
+.Grid th  {
+/*color: #ffffff;*/
+/*background: #428bca;*/
+border: 0px ;
+}
+
+
