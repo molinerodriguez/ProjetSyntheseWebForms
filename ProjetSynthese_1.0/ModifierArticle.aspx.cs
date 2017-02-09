@@ -60,6 +60,14 @@ namespace ProjetSynthese_1._0
         {
             get { return this.txtPxVente; }
         }
+
+        public Label LblResultatModificationArticle
+        {
+            get
+            {
+                return lblResultatModificationArticle;
+            }
+        }
         #endregion
     }
 }
