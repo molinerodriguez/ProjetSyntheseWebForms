@@ -48,6 +48,13 @@ namespace ProjetSynthese_1._0.Controleurs
             frm.GridViewCommande.DataSource = cmd.LigneCommandes;
             frm.GridViewCommande.DataBind();
 
+            frm.TxtNum.Text = "";
+            frm.TxtNom.Text = "";
+            frm.TxtPrix.Text = "";
+            frm.TxtQuantite.Text = "";
+            frm.BtnAjouter.Enabled = false;
+            frm.BtnEnregistrer.Enabled = true;
+
         }
 
         //Rechercher une ligne de commande dans la commande en cours
@@ -62,6 +69,32 @@ namespace ProjetSynthese_1._0.Controleurs
                 ligne = result.Single();
             }
             return ligne;
+        }
+
+        //Supprimer une ligne de commande
+        public static void supprimmerLigne(NouvelleCommande frm, int numArticle)
+        {
+            Commande cmd = frm.Session["commande"] as Commande;
+
+            LigneCommande ligne = RechercherLigneCommande(numArticle, cmd.LigneCommandes);
+            if (ligne != null)
+            {
+                //Mise à jour du montant dans la fenetre
+                cmd.montant -= ligne.prix * ligne.quantite;
+                frm.TxtMontant.Text = cmd.montant.ToString();
+
+                //Suppression de la ligne
+                cmd.LigneCommandes.Remove(ligne);
+                
+                //Mise à jour du grid
+                frm.GridViewCommande.DataSource = cmd.LigneCommandes;
+                frm.GridViewCommande.DataBind();
+
+            }
+            else
+            {
+                //Erreur systeme grave!!!!!!
+            }
         }
     }
 }

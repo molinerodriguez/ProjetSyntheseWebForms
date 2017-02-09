@@ -51,10 +51,10 @@ namespace ProjetSynthese_1._0
         public TextBox TxtNom { get { return this.txtNom; } }
         public TextBox TxtPrix { get { return this.txtPrix; } }
         public TextBox TxtQuantite { get { return this.txtQuantite; } }
-
         public GridView GridViewCommande { get { return this.gridViewCommande; } }
-
-
+        public Button BtnRechercher { get { return this.btnRechercher; } }
+        public Button BtnEnregistrer { get { return this.btnEnregistrer; } }
+        public Button BtnAjouter { get { return this.btnAjouter; } }
         #endregion
 
         protected void btnAjouter_Click(object sender, EventArgs e)
@@ -66,6 +66,14 @@ namespace ProjetSynthese_1._0
         {
             //Lister des articles
             GestionArticle.ListerArticles(this);
+        }
+
+        protected void gridViewCommande_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            //Selection de la ligne à supprimer
+            GridViewRow myRow = ((GridView)sender).Rows[e.RowIndex];
+            int numArticle = int.Parse(myRow.Cells[2].Text);
+            GestionCommande.supprimmerLigne(this,numArticle);
         }
     }
 }
