@@ -6,55 +6,65 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
-    <title>Login</title>
+    <title>Authentification</title>
 </head>
 <body>
+    <div class="container" style="margin-top: 5%;">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading h3">Authentification</div>
+                <div class="panel-body">
 
+                    <!-- Login Form -->
+                    <form role="form" runat="server">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 well">
-                <div class="h4 text-center">Bienvenue</div>
-                <hr />
-                <form class="form-horizontal" id="form1" runat="server">
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <%--<input type="email" class="form-control" id="email" placeholder="nom utilisateur">--%>
-                            <asp:TextBox ID="txtUser" runat="server" type="text" class="form-control" placeholder="nom utilisateur" />
+                        <!-- Champ Utililsateur -->
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <label><span class="text-danger" style="margin-right: 5px;">*</span>Nom utilisateur:</label>
+                                <div class="input-group">
+                                    <asp:TextBox ID="txtUser" runat="server" type="text" Text="Dan" class="form-control" placeholder="obligatoire" />
+                                    <span class="input-group-btn">
+                                        <label class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></label>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <asp:TextBox ID="txtPass" runat="server" type="password" class="form-control" placeholder="mot de passe"/>
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <asp:Button ID="btnSeconnecter" runat="server" Text="Se connecter" OnClick="btnSeconnecter_Click" class="btn btn-default btn-block" />
+                        <!-- Champ contenue -->
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <label><span class="text-danger" style="margin-right: 5px;">*</span>Mot de passe:</label>
+                                <div class="input-group">
+                                    <asp:TextBox ID="txtPass" runat="server" type="password" Text="Roman" class="form-control" placeholder="obligatoire" />
+                                    <span class="input-group-btn">
+                                        <label class="btn btn-primary"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></label>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage=">> nom d'utilisateur obligatoire" 
-                        ControlToValidate="txtUser" ForeColor="Red"></asp:RequiredFieldValidator><br />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage=">> mot de passe obligatoire"
-                        ControlToValidate="txtPass" ForeColor="Red"></asp:RequiredFieldValidator><br />
-                    <asp:Label ID="lblResultatLogin" runat="server" Text="" ForeColor="Red"></asp:Label>
-                </form>
 
+                        <!-- Boutton Login -->
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <%--<button class="btn btn-primary" type="submit">Submit</button>--%>
+                                <asp:Button ID="btnSeconnecter" runat="server" Text="Connexion" OnClick="btnSeconnecter_Click" class="btn btn-primary btn-block" />
+                            </div>
+                        </div>
+
+                        <!-- Controlleurs Form-->
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Nom d'utilisateur obligatoire"
+                            ControlToValidate="txtUser" ForeColor="Red"></asp:RequiredFieldValidator><br />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Mot de passe obligatoire"
+                            ControlToValidate="txtPass" ForeColor="Red"></asp:RequiredFieldValidator><br />
+                        <asp:Label ID="lblResultatLogin" runat="server" Text="" ForeColor="Red"></asp:Label>
+                    </form>
+                    <!-- Fin Form -->
+                </div>
             </div>
         </div>
     </div>
 
-    <%--    
-    <form id="form1" runat="server">
-        <div>
-            <asp:Label ID="lblUserName" runat="server" Text="Nom d'utilisateur " /><asp:TextBox ID="txtUser" runat="server" /><br />
-            <asp:Label ID="lblMotDePasse" runat="server" Text="Mot de passe " /><asp:TextBox ID="txtPass" runat="server" /><br />
-            <asp:Button ID="btnSeconnecter" runat="server" Text="Se connecter" OnClick="btnSeconnecter_Click" />
 
-
-        </div>
-    </form>
-    --%>
 </body>
 </html>
