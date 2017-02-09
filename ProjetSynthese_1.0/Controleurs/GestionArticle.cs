@@ -10,6 +10,9 @@ namespace ProjetSynthese_1._0.Controleurs
 {
     public class GestionArticle
     {
+
+
+
         //Enregistrer un nouvel article
         public static void Enregister(NouvelArticle frmArticle)
         {
