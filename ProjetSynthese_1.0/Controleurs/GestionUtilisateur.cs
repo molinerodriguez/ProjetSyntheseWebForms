@@ -99,9 +99,13 @@ namespace ProjetSynthese_1._0.Controleurs
                     menu.Items[1].ChildItems[1].NavigateUrl = "~/RechercherFournisseur.aspx";
                     #endregion
 
+                    #region commande
                     menu.Items[2].ChildItems.Add(new MenuItem("Placer commande"));
+                    menu.Items[2].ChildItems[0].NavigateUrl = "~/NouvelleCommande.aspx";
+
                     menu.Items[2].ChildItems.Add(new MenuItem("Modifier commande"));
                     menu.Items[2].ChildItems.Add(new MenuItem("Recevoir commande"));
+                    #endregion
 
                     menu.Items[3].ChildItems.Add(new MenuItem("Nouveau bon de distribution"));
                     menu.Items[3].ChildItems.Add(new MenuItem("Modifier bon de distribution"));

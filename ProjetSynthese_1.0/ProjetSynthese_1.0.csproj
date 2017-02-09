@@ -130,6 +130,7 @@
     <Content Include="RechercherArticle.aspx" />
     <Content Include="ModifierArticle.aspx" />
     <Content Include="NouveauFournisseur.aspx" />
+    <Content Include="NouvelleCommande.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -275,6 +276,13 @@
     </Compile>
     <Compile Include="NouveauFournisseur.aspx.designer.cs">
       <DependentUpon>NouveauFournisseur.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NouvelleCommande.aspx.cs">
+      <DependentUpon>NouvelleCommande.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NouvelleCommande.aspx.designer.cs">
+      <DependentUpon>NouvelleCommande.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

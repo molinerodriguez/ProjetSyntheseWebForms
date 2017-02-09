@@ -81,7 +81,7 @@ namespace ProjetSynthese_1._0.Controleurs
         //    }
         //    return article;
         //}
-        private void Test() { }
+        
 
         public static void ListerArticles(RechercherArticle frmArticle)
         {
