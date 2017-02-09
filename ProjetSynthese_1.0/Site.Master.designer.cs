@@ -22,13 +22,22 @@ namespace ProjetSynthese_1._0 {
         protected global::System.Web.UI.WebControls.Menu menuPrincipale;
         
         /// <summary>
-        /// nomUser control.
+        /// btnUtilisateur control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl nomUser;
+        protected global::System.Web.UI.WebControls.Button btnUtilisateur;
+        
+        /// <summary>
+        /// btnDeconnexion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDeconnexion;
         
         /// <summary>
         /// MainContent control.
