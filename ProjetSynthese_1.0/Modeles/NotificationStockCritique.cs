@@ -6,6 +6,7 @@ namespace ProjetSynthese_1._0.Modeles
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Serializable]
     [Table("NotificationStockCritique")]
     public partial class NotificationStockCritique
     {

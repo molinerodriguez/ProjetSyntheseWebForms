@@ -57,6 +57,7 @@ namespace ProjetSynthese_1._0.Controleurs
 
         }
 
+
         //Rechercher une ligne de commande dans la commande en cours
         private static LigneCommande RechercherLigneCommande(int numArticle, ICollection<LigneCommande> ligneCommande)
         {
@@ -93,7 +94,7 @@ namespace ProjetSynthese_1._0.Controleurs
             }
             else
             {
-                //Erreur systeme grave!!!!!!
+                //Erreur systeme grave!!!!!!  à ne pas traiter dans la page
             }
         }
 
@@ -133,6 +134,107 @@ namespace ProjetSynthese_1._0.Controleurs
                 //Message de confirmation : La commande a été sauvegardée avec succes
             }
 
+        }
+
+        //Rechercher une commande
+        public static Commande RechercherCommande(int numCommande)
+        {
+            Commande commande = null;
+
+            var sim = new SIM_Context();//Il faut absolument implementer L'interface IClonable pour toutes les entites
+
+            IEnumerable<Commande> result = from c in sim.Commandes
+                                           where c.numCommande == numCommande
+                                           select c;
+            if (result.Count() > 0)
+            {
+                commande = result.Single();
+            }
+
+            return commande;
+        }   
+
+        //Rechercher et afficher une commande
+        public static void RechercherCommande(RecevoirCommande frm)
+        {
+            //Numero de la commande à rechercher
+            int numCommande = int.Parse(frm.TxtNumeroCommande.Text);
+
+            Commande commande = RechercherCommande(numCommande);
+
+            if (commande != null)
+            {
+                //Sauvegarde temporaire du num de la commande
+                frm.Session["numCommande"] = commande.numCommande;
+
+                //Affichage du fournisseur
+                frm.TxtFournisseur.Text = "Nom :" + commande.Fournisseur.nom + 
+                                          " Adresse :" + commande.Fournisseur.adresse + 
+                                          " Telephone :" + commande.Fournisseur.telephone;
+
+                //Affichage du montant et de la date
+                frm.TxtMontant.Text = commande.montant.ToString();
+                frm.TxtDate.Text = commande.dateCommande.ToShortDateString();
+
+                //Affichage des lignes de commande
+                frm.GridLignesCommande.DataSource = commande.LigneCommandes;
+                frm.GridLignesCommande.DataBind();
+
+                //Activation des boutons
+                frm.BtnRecevoir.Enabled = true;
+                frm.BtnImprimer.Enabled = true;
+            }
+            else
+            {
+                //Message : Cette commande n'existe pas!
+            }
+        }
+
+        //Recevoir une commande
+        public static void RecevoirCommande(RecevoirCommande frm)
+        {
+            //Recuperation du numero de commande
+            int numCommande = int.Parse(frm.Session["numCommande"].ToString());
+
+            using (var sim = new SIM_Context())
+            {
+                //Recuperation de l'objet commande
+                Commande commande=sim.Commandes.Find(numCommande);
+
+                if (commande != null)
+                {
+                    foreach (LigneCommande l in commande.LigneCommandes)
+                    {
+                        //Selectionner l'article
+                        Article article = l.Article;
+
+                        //Selectionner le StockCentral lié à l'article
+                        StockCentral stockCentral = sim.StockCentrals.Find(article.numArticle);
+
+                        if (stockCentral != null)//L'article est deja en stock
+                        {
+                            //Mise à jour de la quantite en stock
+                            stockCentral.qte += l.quantite;
+                        }
+                        else
+                        {
+                            //Premiere commande pour cet article
+                            sim.StockCentrals.Add(
+                                new StockCentral
+                                {
+                                    numArticle = article.numArticle,
+                                    qte = l.quantite,
+                                    qteCritique = 0
+                                }
+                                );
+                        }
+                    }
+
+                    int result=sim.SaveChanges();
+                    //Message de confirmation: La réception de la commande a été faite avec succes et les stocks ont été mis à jour!. 
+                }
+
+            }
         }
     }
 }
