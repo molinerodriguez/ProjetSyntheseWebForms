@@ -75,5 +75,10 @@ namespace ProjetSynthese_1._0
             int numArticle = int.Parse(myRow.Cells[2].Text);
             GestionCommande.supprimmerLigne(this,numArticle);
         }
+
+        protected void btnEnregistrer_Click(object sender, EventArgs e)
+        {
+            GestionCommande.EnregisterCommande(this);
+        }
     }
 }

@@ -7,10 +7,10 @@
     <asp:Label ID="lblFournisseur" runat="server" Text="Fournisseur "></asp:Label>
     <asp:DropDownList ID="cmbFournisseur" runat="server" OnSelectedIndexChanged="cmbFournisseur_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList><br/>
     
-    <asp:TextBox ID="txtInfoFpurnisseur" runat="server" Height="41px" Width="247px"></asp:TextBox><br/>
+    <asp:TextBox ID="txtInfoFpurnisseur" runat="server" Height="41px" Width="247px" Enabled="False"></asp:TextBox><br/>
 
     <asp:Label ID="lblMontant" runat="server" Text="Montant "></asp:Label>
-    <asp:TextBox ID="txtMontant" runat="server"></asp:TextBox><br/>
+    <asp:TextBox ID="txtMontant" runat="server" Enabled="False"></asp:TextBox><br/>
 
     <asp:Label ID="lblDateCommande" runat="server" Text="Date commande "></asp:Label>
     <asp:Calendar ID="calDateCommande" runat="server" Height="16px" Width="127px"></asp:Calendar><br/>
@@ -44,6 +44,6 @@
     </asp:GridView><br/>
 
     <hr/>
-    <asp:Button ID="btnEnregistrer" runat="server" Text="Enregistrer" Enabled="false"/>
+    <asp:Button ID="btnEnregistrer" runat="server" Text="Enregistrer" Enabled="false" OnClick="btnEnregistrer_Click"/>
 
 </asp:Content>

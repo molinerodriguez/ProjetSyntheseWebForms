@@ -96,5 +96,43 @@ namespace ProjetSynthese_1._0.Controleurs
                 //Erreur systeme grave!!!!!!
             }
         }
+
+        //Enregistrer une commande
+        public static void EnregisterCommande(NouvelleCommande frm)
+        {
+            //L'utilisateur en cours
+            Utilisateur utilisateur= frm.Session["utilisateur"] as Utilisateur;
+
+            //Mon fammeux objet commande
+            Commande cmd = frm.Session["commande"] as Commande;
+
+            //Recuperer le fournisseur
+            Fournisseur fournisseur = GestionFournisseur.Rechercher(frm.CmbFournisseur.SelectedValue);
+            
+            //Completion de l'objet commande
+            cmd.numFournisseur = fournisseur.numFournisseur;
+            cmd.dateCommande = frm.CalDateCommande.SelectedDate;
+            cmd.nomUtilisateur = utilisateur.nomUtilisateur;
+            //cmd.Fournisseur = fournisseur;
+
+            using (var sim = new SIM_Context())
+            {
+                //Sauvegarde de la commande
+                cmd =sim.Commandes.Add(cmd);
+                int result = sim.SaveChanges();
+
+                //Affichage numero commande
+                frm.TxtNumCommande.Text = cmd.numCommande.ToString();
+
+                //Mise à jour du grid
+                frm.GridViewCommande.DataSource = cmd.LigneCommandes;
+                frm.GridViewCommande.DataBind();
+
+                frm.BtnEnregistrer.Enabled = false;
+                frm.Session["commande"] = null;
+                //Message de confirmation : La commande a été sauvegardée avec succes
+            }
+
+        }
     }
 }
