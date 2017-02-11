@@ -20,8 +20,22 @@ namespace ProjetSynthese_1._0
 
         protected void btnDeconnexion_Click(object sender, EventArgs e)
         {
-            //ici il faut detruire l<utilisateur
-            Server.Transfer("~/Login.aspx");
+            btnDeconnexion.Visible = false;
+            GestionUtilisateur.SeDeconnecter(this);
         }
+
+        protected void btnUtilisateur_Click(object sender, EventArgs e)
+        {
+            if(btnUtilisateur.Text == "Se connecter")
+            {
+                Server.Transfer("Login.aspx");
+            }
+            else
+            {
+                Server.Transfer("Accueil.aspx");
+            }
+        }
+
+
     }
 }

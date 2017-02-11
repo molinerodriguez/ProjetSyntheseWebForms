@@ -28,7 +28,7 @@
                 <img src="Images/fruits3.jpg" class="img-responsive img-thumbnail" />
             </div>
             <div class="col-md-4" >
-                <div class="h1 text-center">Bienvenido</div>
+                <div class="h1 text-center">مرحبا </div>
             </div>
         </div>
     </div>

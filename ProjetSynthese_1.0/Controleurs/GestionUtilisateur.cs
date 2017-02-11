@@ -39,6 +39,15 @@ namespace ProjetSynthese_1._0.Controleurs
 
         }
 
+        public static void SeDeconnecter(SiteMaster master)
+        {
+            master.Session.Remove("utilisateur");
+            master.Server.Transfer("~/Login.aspx");
+        }
+
+
+
+
         //Rechercher un utilisateur
         private static Utilisateur Rechercher(string user, string pass)//Exception à propager ici
         {
@@ -66,6 +75,8 @@ namespace ProjetSynthese_1._0.Controleurs
             {
                 (master.FindControl("btnUtilisateur") as Button).Text = "Utilisateur: " + user.nomUtilisateur;
                 (master.FindControl("btnDeconnexion") as Button).Text = "Deconnexion!";
+                (master.FindControl("btnDeconnexion") as Button).Visible = true;
+
 
 
                 if (user.type == "admin")//Gestionnaire ou directeur
@@ -73,6 +84,7 @@ namespace ProjetSynthese_1._0.Controleurs
                     //https://www.youtube.com/watch?v=xvrr-gZ2UJQ
                     //Menus
                     Menu menu = master.FindControl("menuPrincipale") as Menu;
+
 
                     menu.Items.Add(new MenuItem("Article"));
                     menu.Items.Add(new MenuItem("Fournisseur"));
@@ -90,6 +102,8 @@ namespace ProjetSynthese_1._0.Controleurs
                     menu.Items[0].ChildItems.Add(new MenuItem("Fixer qte critique"));
                     menu.Items[0].ChildItems[2].NavigateUrl = "";
                     #endregion
+
+
 
                     #region fournisseur
                     menu.Items[1].ChildItems.Add(new MenuItem("Nouveau fournisseur"));
