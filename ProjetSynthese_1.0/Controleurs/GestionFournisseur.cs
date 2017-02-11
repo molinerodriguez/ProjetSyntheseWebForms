@@ -53,7 +53,7 @@ namespace ProjetSynthese_1._0.Controleurs
         }
         
         //Rechercher un fournisseur par nom
-        private static Fournisseur Rechercher(string nom)
+        public static Fournisseur Rechercher(string nom)
         {
             Fournisseur fournisseur = null;
             using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)

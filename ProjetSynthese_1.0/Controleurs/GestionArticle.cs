@@ -102,8 +102,11 @@ namespace ProjetSynthese_1._0.Controleurs
         {
             if (!frm.TxtArticle.Text.Equals(""))
             {
-                frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text);
-                frm.GridArticles.DataBind();
+                if ((frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text)) != null)
+                {
+                    frm.GridArticles.DataBind();
+                    frm.BtnAjouter.Enabled = true;
+                }
             }
         }
 

@@ -135,6 +135,7 @@
     <Content Include="ModifierArticle.aspx" />
     <Content Include="NouveauFournisseur.aspx" />
     <Content Include="NouvelleCommande.aspx" />
+    <Content Include="RecevoirCommande.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -217,6 +218,7 @@
     </Compile>
     <Compile Include="Modeles\Article.cs" />
     <Compile Include="Modeles\BonDistribution.cs" />
+    <Compile Include="Modeles\CloneDotNetDojo.cs" />
     <Compile Include="Modeles\Commande.cs" />
     <Compile Include="Modeles\Filiale.cs" />
     <Compile Include="Modeles\Fournisseur.cs" />
@@ -288,6 +290,13 @@
     </Compile>
     <Compile Include="NouvelleCommande.aspx.designer.cs">
       <DependentUpon>NouvelleCommande.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecevoirCommande.aspx.cs">
+      <DependentUpon>RecevoirCommande.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecevoirCommande.aspx.designer.cs">
+      <DependentUpon>RecevoirCommande.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
