@@ -29,19 +29,28 @@ namespace ProjetSynthese_1._0.Controleurs
 
                 using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
                 {
-                    Article article = sim.Articles.Add(new Article
+                    try
                     {
-                        nom = nom.Text,
-                        description = description.Text,
-                        categorie = categorie.Text,
-                        prixAchat = double.Parse(pxAchat.Text),
-                        prixVente = double.Parse(pxVente.Text)
-                    });
-                    int n = sim.SaveChanges();//Procedure stockee à intégrer ...
-                    frmArticle.TxtNum.Text = article.numArticle.ToString();
+                        Article article = sim.Articles.Add(new Article
+                        {
+                            nom = nom.Text,
+                            description = description.Text,
+                            categorie = categorie.Text,
+                            prixAchat = double.Parse(pxAchat.Text),
+                            prixVente = double.Parse(pxVente.Text)
+                        });
+                        int n = sim.SaveChanges();//Procedure stockee à intégrer ...
+                        frmArticle.TxtNum.Text = article.numArticle.ToString();
 
-                    //Ajouter aussi un message de confirmation
-                    frmArticle.LblResultatSauvegarde.Text = "L'article a été sauvegardé avec succes!";
+                        //Ajouter aussi un message de confirmation
+                        frmArticle.LblResultatSauvegarde.Text = "L'article a été sauvegardé avec succes!";
+
+                    }
+                    catch (Exception)
+                    {
+                        //Affiche message si prix n'Est pas un nombre
+                        frmArticle.LblResultatSauvegarde.Text = "Prix d'achat et de vente en nombre seulement";
+                    }
                 }
             }
             else
