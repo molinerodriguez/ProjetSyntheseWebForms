@@ -130,7 +130,7 @@ namespace ProjetSynthese_1._0.Controleurs
                 frm.GridViewCommande.DataBind();
 
                 frm.BtnEnregistrer.Enabled = false;
-                frm.Session["commande"] = null;
+                frm.Session.Remove("commande");
                 //Message de confirmation : La commande a été sauvegardée avec succes
             }
 
@@ -231,6 +231,7 @@ namespace ProjetSynthese_1._0.Controleurs
                     }
 
                     int result=sim.SaveChanges();
+                    frm.Session.Remove("numCommande");
                     //Message de confirmation: La réception de la commande a été faite avec succes et les stocks ont été mis à jour!. 
                 }
 
