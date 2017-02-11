@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <div class="h3 text-primary">Nouvel article</div>
-    <table class="table table-hover">
+    <table class="table table-responsive">
         <tr>
             <td>
                 <asp:Label ID="lblNumArticle" runat="server" Text="Numero "></asp:Label></td>

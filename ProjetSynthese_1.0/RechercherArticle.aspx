@@ -20,6 +20,6 @@
         </table>
 
     <asp:GridView ID="gridArticles" runat="server" AutoGenerateEditButton="True" OnRowEditing="gridArticles_RowEditing" 
-        CssClass="table table-hover Grid" BorderStyle="None" >
+        CssClass="table table-responsive Grid" BorderStyle="None" >
     </asp:GridView>
 </asp:Content>

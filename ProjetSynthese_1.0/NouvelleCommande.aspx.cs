@@ -80,5 +80,7 @@ namespace ProjetSynthese_1._0
         {
             GestionCommande.EnregisterCommande(this);
         }
+
+
     }
 }

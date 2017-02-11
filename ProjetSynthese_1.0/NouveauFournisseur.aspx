@@ -5,7 +5,7 @@
     <br />
     <div class="h3 text-primary">Nouveau fournisseur</div>
 
-    <table class="table table-hover">
+    <table class="table table-responsive">
         <tr>
             <td>
                 <asp:Label ID="lblNumFournisseur" runat="server" Text="Numero"></asp:Label>
