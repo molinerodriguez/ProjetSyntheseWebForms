@@ -110,8 +110,13 @@ namespace ProjetSynthese_1._0.Controleurs
                     menu.Items[2].ChildItems[2].NavigateUrl = "#";
                     #endregion
 
+                    #region Bon de distribution
                     menu.Items[3].ChildItems.Add(new MenuItem("Nouveau bon de distribution"));
+                    menu.Items[3].ChildItems[0].NavigateUrl = "~/NouvelleBonDistribution.aspx";
+
                     menu.Items[3].ChildItems.Add(new MenuItem("Modifier bon de distribution"));
+                    menu.Items[3].ChildItems[1].NavigateUrl = "#";
+                    #endregion
                 }
                 if (user.type == "caissier")
                 {
