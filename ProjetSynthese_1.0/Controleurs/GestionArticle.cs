@@ -161,13 +161,21 @@ namespace ProjetSynthese_1._0.Controleurs
 
         }
 
-        //Afficher un article dans la 
+        //Afficher un article dans le fourmulaire nouvelle commande
         public static void Afficher(NouvelleCommande frm)
         {
             GridViewRow myRow = frm.GridArticles.SelectedRow;
             frm.TxtNum.Text = myRow.Cells[1].Text;
             frm.TxtNom.Text = myRow.Cells[2].Text;
             frm.TxtPrix.Text = myRow.Cells[5].Text;
+        }
+
+        //Afficher un article dans le fourmulaire nouvelle commande
+        public static void Afficher(NouvelleBonDistribution frm)
+        {
+            GridViewRow myRow = frm.GridArticles.SelectedRow;
+            frm.TxtNumArticle.Text = myRow.Cells[1].Text;
+            frm.TxtNom.Text = myRow.Cells[2].Text;
         }
     }
 }

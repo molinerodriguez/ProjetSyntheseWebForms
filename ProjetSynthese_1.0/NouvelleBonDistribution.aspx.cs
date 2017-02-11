@@ -48,12 +48,15 @@ namespace ProjetSynthese_1._0
 
         protected void gridArticles_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Afficher un article
+            GestionArticle.Afficher(this);
 
         }
 
         protected void btnAjouter_Click(object sender, EventArgs e)
         {
-
+            //Ajouter une ligne de distribution
+            GestionBonDistribution.Ajouter(this);
         }
 
         protected void gridViewDistribution_RowDeleting(object sender, GridViewDeleteEventArgs e)
