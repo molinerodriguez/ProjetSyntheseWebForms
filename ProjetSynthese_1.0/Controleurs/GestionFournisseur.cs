@@ -15,7 +15,9 @@ namespace ProjetSynthese_1._0.Controleurs
             {
                 using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
                 {
-                    Fournisseur fournisseur = sim.Fournisseurs.Add(
+                    try
+                    {
+                        Fournisseur fournisseur = sim.Fournisseurs.Add(
                             new Fournisseur
                             {
                                 nom = frm.TxtNom.Text,
@@ -23,14 +25,21 @@ namespace ProjetSynthese_1._0.Controleurs
                                 telephone = frm.TxtTelephone.Text
                             }
                         );
-                    int n = sim.SaveChanges();//Procedure stockee à intégrer ...
-                    frm.TxtNum.Text = fournisseur.numFournisseur.ToString();
-                    //Message de confirmation!
+                        int n = sim.SaveChanges();//Procedure stockee à intégrer ...
+                        frm.TxtNum.Text = fournisseur.numFournisseur.ToString();
+                        //Message de confirmation!
+                        frm.LblResultatNouveauFournisseur.Text = "Fournisseur enregistrer avec SUCCES!";
+                    }
+                    catch (Exception)
+                    {
+
+                        frm.LblResultatNouveauFournisseur.Text = "Erreur enregistrement fournisseur";
+                    }
                 }
             }
             else
             {
-                //Message d'erreur! 
+                frm.LblResultatNouveauFournisseur.Text = "Attention! Fournisseur existe deja!";
             }
         }
 
@@ -41,17 +50,17 @@ namespace ProjetSynthese_1._0.Controleurs
             using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
             {
                 IEnumerable<Fournisseur> result = from f in sim.Fournisseurs
-                                              where f.nom == nom && f.telephone == telephone
-                                              select f;
+                                                  where f.nom == nom && f.telephone == telephone
+                                                  select f;
 
                 if (result.Count() > 0)
                 {
-                   fournisseur = result.First();
+                    fournisseur = result.First();
                 }
             }
             return fournisseur;
         }
-        
+
         //Rechercher un fournisseur par nom
         public static Fournisseur Rechercher(string nom)
         {
@@ -76,8 +85,8 @@ namespace ProjetSynthese_1._0.Controleurs
             List<Fournisseur> listeFournisseur = null;
             using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
             {
-                listeFournisseur=(from f in sim.Fournisseurs
-                 select f
+                listeFournisseur = (from f in sim.Fournisseurs
+                                    select f
                  ).ToList();
             }
             return listeFournisseur;

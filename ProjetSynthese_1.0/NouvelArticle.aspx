@@ -62,9 +62,6 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
                     ErrorMessage="Champ obligatoire" ControlToValidate="txtPxAchat" ForeColor="Red">
                 </asp:RequiredFieldValidator>
-<%--                <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Nombre réel seulement (ex: 0.5)"
-                    ControlToValidate="txtPxAchat" Type="Integer" ForeColor="Red">
-                </asp:CompareValidator>--%>
             </td>
         </tr>
         <tr>
@@ -78,19 +75,17 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"
                     ErrorMessage="Champ obligatoire" ControlToValidate="txtPxVente" ForeColor="Red">
                 </asp:RequiredFieldValidator>
-<%--                <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="Nombre réel seulement (ex: 10.5)"
-                    ControlToValidate="txtPxVente" Type="Integer" ForeColor="Red"></asp:CompareValidator>--%>
             </td>
         </tr>
         <tr>
+            <td></td>
             <td>
                 <asp:Button ID="btnEnregistrer" runat="server" Text="Sauvegarder" OnClick="btnEnregistrer_Click"
-                    CssClass="btn btn-primary" />
+                    CssClass="btn btn-primary btn-block" />
             </td>
             <td>
-                <asp:Label ID="lblResultatSauvegarde" runat="server" Text="" ForeColor="Red"></asp:Label>
+                <asp:Label ID="lblResultatNouvelArticle" runat="server" Text="" ForeColor="Red"></asp:Label>
             </td>
-            <td></td>
         </tr>
     </table>
 </asp:Content>

@@ -54,9 +54,10 @@ namespace ProjetSynthese_1._0
             get { return this.txtPxVente; }
         }
 
-        public Label LblResultatSauvegarde { get
+        public Label LblResultatNouvelArticle
+        { get
             {
-                return this.lblResultatSauvegarde;
+                return this.lblResultatNouvelArticle;
             }
         }
         #endregion

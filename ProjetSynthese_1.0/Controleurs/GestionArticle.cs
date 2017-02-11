@@ -43,19 +43,19 @@ namespace ProjetSynthese_1._0.Controleurs
                         frmArticle.TxtNum.Text = article.numArticle.ToString();
 
                         //Ajouter aussi un message de confirmation
-                        frmArticle.LblResultatSauvegarde.Text = "L'article a été sauvegardé avec succes!";
+                        frmArticle.LblResultatNouvelArticle.Text = "L'article a été enregistrer avec succes!";
 
                     }
                     catch (Exception)
                     {
                         //Affiche message si prix n'Est pas un nombre
-                        frmArticle.LblResultatSauvegarde.Text = "Prix d'achat et de vente en nombre seulement";
+                        frmArticle.LblResultatNouvelArticle.Text = "Prix d'achat et de vente en nombre seulement";
                     }
                 }
             }
             else
             {
-                frmArticle.LblResultatSauvegarde.Text = "Attention! L'article existe déjà!";
+                frmArticle.LblResultatNouvelArticle.Text = "Attention! L'article existe déjà!";
             }
         }
 
