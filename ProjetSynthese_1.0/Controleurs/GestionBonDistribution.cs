@@ -11,7 +11,8 @@ namespace ProjetSynthese_1._0.Controleurs
         //Initilatisation du bon de distribution
         public static void InitialiserBon(NouvelleBonDistribution frm)
         {
-            
+            BonDistribution bonDistribution = new BonDistribution();
+            frm.Session["bonDistribution"] = bonDistribution;
         }
     }
 }

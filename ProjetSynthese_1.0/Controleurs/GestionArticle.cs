@@ -119,6 +119,19 @@ namespace ProjetSynthese_1._0.Controleurs
             }
         }
 
+        //Lister articles dans le fenetre de bon de distribution
+        public static void ListerArticles(NouvelleBonDistribution frm)
+        {
+            if (!frm.TxtArticle.Text.Equals(""))
+            {
+                if ((frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text)) != null)
+                {
+                    frm.GridArticles.DataBind();
+                    frm.BtnAjouter.Enabled = true;
+                }
+            }
+        }
+
         public static void Modifier(ModifierArticle frmArticle)
         {
             TextBox nom = frmArticle.TxtNom;
@@ -148,6 +161,7 @@ namespace ProjetSynthese_1._0.Controleurs
 
         }
 
+        //Afficher un article dans la 
         public static void Afficher(NouvelleCommande frm)
         {
             GridViewRow myRow = frm.GridArticles.SelectedRow;

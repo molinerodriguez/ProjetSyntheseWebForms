@@ -40,12 +40,13 @@ namespace ProjetSynthese_1._0
             GestionFiliale.AfficherFiliale(this);
         }
 
-        protected void btnEnregistrer_Click(object sender, EventArgs e)
+        protected void btnRechercher_Click(object sender, EventArgs e)
         {
-
+            //Lister des articles
+            GestionArticle.ListerArticles(this);
         }
 
-        protected void gridViewDistribution_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gridArticles_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -55,14 +56,15 @@ namespace ProjetSynthese_1._0
 
         }
 
-        protected void gridArticles_SelectedIndexChanged(object sender, EventArgs e)
+        protected void gridViewDistribution_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
         }
 
-        protected void btnRechercher_Click(object sender, EventArgs e)
+        protected void btnEnregistrer_Click(object sender, EventArgs e)
         {
 
         }
+        
     }
 }
