@@ -128,6 +128,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Images\fruits.jpg" />
+    <Content Include="Images\fruits2.jpg" />
+    <Content Include="Images\fruits3.jpg" />
     <Content Include="NouvelArticle.aspx" />
     <Content Include="RechercherArticle.aspx" />
     <Content Include="ModifierArticle.aspx" />

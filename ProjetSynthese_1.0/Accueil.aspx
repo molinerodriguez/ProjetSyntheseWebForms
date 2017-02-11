@@ -2,18 +2,19 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-
+    <br />
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img src="Images/fruits.jpg" class="img-responsive img-rounded" />
+                <img src="Images/fruits.jpg" class="img-responsive img-thumbnail" />
             </div>
             <div class="col-md-4">
-                <div class="h1 text-center">Welcome</div>
-
+                <div class="textContainer h1">
+                    Welcome!!!!!!!!
+                </div>
             </div>
             <div class="col-md-4">
-                <img src="Images/fruits.jpg" class="img-responsive img-rounded" />
+                <img src="Images/fruits2.jpg" class="img-responsive img-thumbnail" />
             </div>
         </div>
     </div>
@@ -24,9 +25,9 @@
                 <div class="h1 text-center">Bienvenue</div>
             </div>
             <div class="col-md-4">
-                <img src="Images/fruits.jpg" class="img-responsive img-rounded" />
+                <img src="Images/fruits3.jpg" class="img-responsive img-thumbnail" />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" >
                 <div class="h1 text-center">Bienvenido</div>
             </div>
         </div>

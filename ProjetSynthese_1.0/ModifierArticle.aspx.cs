@@ -14,9 +14,6 @@ namespace ProjetSynthese_1._0
         {
             if (!IsPostBack)
             {
-                //this.RangeValidator1.Enabled = false;
-                //this.RangeValidator2.Enabled = false;
-
                 GridViewRow myRow = Session["myRow"] as GridViewRow;
                 //myGrid = Session["maSource"] as Object;
                 this.txtNum.Text = myRow.Cells[1].Text;
@@ -25,8 +22,6 @@ namespace ProjetSynthese_1._0
                 this.txtCategorie.Text = myRow.Cells[4].Text;
                 this.txtPxAchat.Text = myRow.Cells[5].Text;
                 this.txtPxVente.Text = myRow.Cells[6].Text;
-                //this.RangeValidator1.Enabled = true;
-                //this.RangeValidator2.Enabled = true;
             }
         }
 

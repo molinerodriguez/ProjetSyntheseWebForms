@@ -29,3 +29,10 @@ textarea {
         padding: 0;
     }
 }
+
+/*Dan*/
+.textContainer {
+    vertical-align: bottom;
+    min-height: 300px;
+    border: solid 1px;
+}
