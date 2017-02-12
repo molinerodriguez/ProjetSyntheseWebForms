@@ -100,7 +100,7 @@ namespace ProjetSynthese_1._0.Controleurs
                     menu.Items[0].ChildItems[1].NavigateUrl = "~/RechercherArticle.aspx";
 
                     menu.Items[0].ChildItems.Add(new MenuItem("Fixer qte critique"));
-                    menu.Items[0].ChildItems[2].NavigateUrl = "";
+                    menu.Items[0].ChildItems[2].NavigateUrl = "#";
                     #endregion
 
 
@@ -110,7 +110,9 @@ namespace ProjetSynthese_1._0.Controleurs
                     menu.Items[1].ChildItems[0].NavigateUrl = "~/NouveauFournisseur.aspx";
 
                     menu.Items[1].ChildItems.Add(new MenuItem("Rechercher fournisseur"));
-                    menu.Items[1].ChildItems[1].NavigateUrl = "~/RechercherFournisseur.aspx";
+                    menu.Items[1].ChildItems[1].NavigateUrl = "#";
+                    //menu.Items[1].ChildItems[1].NavigateUrl = "~/RechercherFournisseur.aspx";
+
                     #endregion
 
                     #region commande

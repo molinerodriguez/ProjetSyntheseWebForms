@@ -76,7 +76,7 @@
                 <asp:Button ID="btnModifier" runat="server" Text="Modifier" OnClick="btnModifier_Click"
                     CssClass="btn btn-primary btn-block" /></td>
             <td>
-                <asp:Label ID="lblResultatModificationArticle" runat="server" Text=""></asp:Label>
+                <asp:Label ID="lblResultatModificationArticle" runat="server" Text="" ForeColor="Red"></asp:Label>
             </td>
         </tr>
     </table>
