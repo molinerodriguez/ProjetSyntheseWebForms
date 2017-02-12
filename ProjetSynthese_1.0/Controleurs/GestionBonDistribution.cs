@@ -20,32 +20,50 @@ namespace ProjetSynthese_1._0.Controleurs
         {
             int numArticle = int.Parse(frm.TxtNumArticle.Text);
             int quantite = int.Parse(frm.TxtQuantite.Text);
-            BonDistribution bonDistribution = frm.Session["bonDistribution"] as BonDistribution;
-
-            LigneBonDistribution ligne = RechercherLigneBonDistribution(numArticle, bonDistribution.LigneBonDistributions);
-            if (ligne == null)
+            //Avant d'aller plus loin, verifier si l'article est en stock ou possede la qte demandée
+            Article article = GestionArticle.Rechercher(numArticle);
+            if (article != null)
             {
-                ligne = new LigneBonDistribution
+                StockCentral stockCentral = article.StockCentral;
+                if (stockCentral != null)
                 {
-                    numArticle=numArticle,
-                    quantite=quantite
-                };
-                bonDistribution.LigneBonDistributions.Add(ligne);
+                    if (stockCentral.qte >= quantite)
+                    {
+                        BonDistribution bonDistribution = frm.Session["bonDistribution"] as BonDistribution;
+                        LigneBonDistribution ligne = RechercherLigneBonDistribution(numArticle, bonDistribution.LigneBonDistributions);
+                        if (ligne == null)
+                        {
+                            ligne = new LigneBonDistribution
+                            {
+                                numArticle = numArticle,
+                                quantite = quantite,
+                                //Article=article
+                            };
+                            bonDistribution.LigneBonDistributions.Add(ligne);
+                        }
+                        else
+                        {
+                            ligne.quantite += quantite;
+                        }
+
+                        frm.GridViewDistribution.DataSource = bonDistribution.LigneBonDistributions;
+                        frm.GridViewDistribution.DataBind();
+
+                        frm.TxtNumArticle.Text = "";
+                        frm.TxtNom.Text = "";
+                        frm.TxtQuantite.Text = "";
+                    }
+                    else
+                    {
+                        //Message: Quantite insufisante, la quantite en etock est : stockCentral.qte
+                    }
+                }
+                else
+                {
+                    //Message: Cet article n'est pas en stock, Veuillez commander SVP!
+                }
             }
-            else
-            {
-                ligne.quantite += quantite;
-            }
 
-            frm.GridViewDistribution.DataSource = bonDistribution.LigneBonDistributions;
-            frm.GridViewDistribution.DataBind();
-
-            frm.TxtNumArticle.Text = "";
-            frm.TxtNom.Text = "";
-            frm.TxtQuantite.Text = "";
-
-            frm.BtnAjouter.Enabled = false;
-            frm.BtnEnregistrer.Enabled = true;
         }
 
         //Rechercher une ligne de Bon de Distribution dans le Bon de Distribution en cours

@@ -50,6 +50,7 @@ namespace ProjetSynthese_1._0
         {
             //Afficher un article
             GestionArticle.Afficher(this);
+            BtnAjouter.Enabled = true;
 
         }
 
@@ -57,11 +58,17 @@ namespace ProjetSynthese_1._0
         {
             //Ajouter une ligne de distribution
             GestionBonDistribution.Ajouter(this);
+            BtnAjouter.Enabled = false;
+            BtnEnregistrer.Enabled = true;
         }
 
         protected void gridViewDistribution_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
+            //Selection de la ligne à supprimer
+            GridViewRow myRow = ((GridView)sender).Rows[e.RowIndex];
+            int numArticle = int.Parse(myRow.Cells[2].Text);
+            GestionBonDistribution.supprimmerLigne(this,numArticle);
+            
         }
 
         protected void btnEnregistrer_Click(object sender, EventArgs e)

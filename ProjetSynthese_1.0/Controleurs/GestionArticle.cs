@@ -77,6 +77,22 @@ namespace ProjetSynthese_1._0.Controleurs
             return article;
         }
 
+        //Rechercher un article par numero article
+        public static Article Rechercher(int numArticle)
+        {
+            Article article = null;
+            var sim = new SIM_Context();
+            IEnumerable<Article> result = from a in sim.Articles
+                                          where a.numArticle == numArticle
+                                          select a;
+
+            if (result.Count() > 0)
+            {
+                article = result.First();
+            }
+            return article;
+        }
+
         //Rechercher un article par nom
         private static List<Article> Rechercher(string nom)
         {
@@ -127,7 +143,6 @@ namespace ProjetSynthese_1._0.Controleurs
                 if ((frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text)) != null)
                 {
                     frm.GridArticles.DataBind();
-                    frm.BtnAjouter.Enabled = true;
                 }
             }
         }
