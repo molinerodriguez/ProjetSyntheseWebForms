@@ -42,7 +42,7 @@ namespace ProjetSynthese_1._0.Controleurs
         public static void SeDeconnecter(SiteMaster master)
         {
             master.Session.Remove("utilisateur");
-            master.Server.Transfer("~/Login.aspx");
+            master.Server.Transfer("~/Accueil.aspx");
         }
 
 
