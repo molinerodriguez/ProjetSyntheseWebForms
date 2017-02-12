@@ -37,7 +37,7 @@ namespace ProjetSynthese_1._0.Controleurs
                             {
                                 numArticle = numArticle,
                                 quantite = quantite,
-                                //Article=article
+                                Article=article
                             };
                             bonDistribution.LigneBonDistributions.Add(ligne);
                         }
@@ -45,6 +45,9 @@ namespace ProjetSynthese_1._0.Controleurs
                         {
                             ligne.quantite += quantite;
                         }
+
+                        //Mise à jour de la quantité dans le stock central
+                        stockCentral.qte -= quantite;
 
                         frm.GridViewDistribution.DataSource = bonDistribution.LigneBonDistributions;
                         frm.GridViewDistribution.DataBind();
@@ -100,6 +103,50 @@ namespace ProjetSynthese_1._0.Controleurs
             else
             {
                 //Erreur systeme grave!!!!!!  à ne pas traiter dans la page
+            }
+        }
+
+        public static void Enregistrer(NouvelleBonDistribution frm)
+        {
+            //L'utilisateur en cours
+            Utilisateur utilisateur = frm.Session["utilisateur"] as Utilisateur;
+
+            //Mon fammeux objet bon distribution
+            BonDistribution  bnd = frm.Session["bonDistribution"] as BonDistribution;
+
+            //Recuperer la filiale
+            Filiale filiale = GestionFiliale.Rechercher(frm.CmbFiliale.SelectedValue);
+
+            //Completion de l'objet bondistribution
+            bnd.numFiliale = filiale.numFiliale;
+            bnd.dateBonDistribution = frm.CalDateBonDistribution.SelectedDate;
+            bnd.nomUtilisateur = utilisateur.nomUtilisateur;
+            //bnd.Filiale = filiale;
+            bnd.NotificationBonDistributions.Add(
+                new NotificationBonDistribution
+                {
+                    message = "Un bon de distribution vous a été envoyé",
+                    dateNotification = DateTime.Now,
+                    etat = "0"//0: Nom, lu  1: Lu
+                }
+                );
+
+            using (var sim = new SIM_Context())
+            {
+                //Sauvegarde du bon de distribution
+                bnd = sim.BonDistributions.Add(bnd);
+                int result = sim.SaveChanges();
+
+                //Affichage numero bon de distribution
+                frm.TxtNumBonDistribution.Text = bnd.numBonDistribution.ToString();
+
+                //Mise à jour du grid
+                frm.GridViewDistribution.DataSource = bnd.LigneBonDistributions;
+                frm.GridViewDistribution.DataBind();
+
+                frm.BtnEnregistrer.Enabled = false;
+                frm.Session.Remove("bonDistribution");
+                //Message de confirmation : Le bon de distribution a été sauvegardé avec succès!
             }
         }
     }

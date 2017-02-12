@@ -73,7 +73,7 @@ namespace ProjetSynthese_1._0
 
         protected void btnEnregistrer_Click(object sender, EventArgs e)
         {
-
+            GestionBonDistribution.Enregistrer(this);
         }
         
     }
