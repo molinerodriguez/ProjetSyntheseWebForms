@@ -9,8 +9,8 @@
                 <img src="Images/fruits.jpg" class="img-responsive img-thumbnail" />
             </div>
             <div class="col-md-4">
-                <div class="textContainer h1">
-                    Welcome!!!!!!!!
+                <div class="h1 text-center">
+                    Welcome
                 </div>
             </div>
             <div class="col-md-4">

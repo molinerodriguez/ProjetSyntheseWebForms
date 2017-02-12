@@ -21,6 +21,7 @@ namespace ProjetSynthese_1._0
         protected void btnDeconnexion_Click(object sender, EventArgs e)
         {
             btnDeconnexion.Visible = false;
+            btnUtilisateur.Text = "Se connecter";
             GestionUtilisateur.SeDeconnecter(this);
         }
 
@@ -29,10 +30,6 @@ namespace ProjetSynthese_1._0
             if(btnUtilisateur.Text == "Se connecter")
             {
                 Server.Transfer("Login.aspx");
-            }
-            else
-            {
-                Server.Transfer("Accueil.aspx");
             }
         }
 
