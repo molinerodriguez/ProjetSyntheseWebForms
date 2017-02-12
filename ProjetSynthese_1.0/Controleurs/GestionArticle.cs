@@ -154,23 +154,32 @@ namespace ProjetSynthese_1._0.Controleurs
             int num = int.Parse(frmArticle.TxtNum.Text);
             using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
             {
-                Article article;
-                //Verifier l'existence de l'article
-                if ((article = sim.Articles.Find(num)) != null)
+                try
                 {
-                    //Modification de l'article
-                    article.nom = frmArticle.TxtNom.Text;
-                    article.description = frmArticle.TxtDescription.Text;
-                    article.categorie = frmArticle.TxtCategorie.Text;
-                    article.prixAchat = double.Parse(frmArticle.TxtPxAchat.Text);
-                    article.prixVente = double.Parse(frmArticle.TxtPxVente.Text);
+                    Article article;
+                    //Verifier l'existence de l'article
+                    if ((article = sim.Articles.Find(num)) != null)
+                    {
+                        //Modification de l'article
+                        article.nom = frmArticle.TxtNom.Text;
+                        article.description = frmArticle.TxtDescription.Text;
+                        article.categorie = frmArticle.TxtCategorie.Text;
+                        article.prixAchat = double.Parse(frmArticle.TxtPxAchat.Text);
+                        article.prixVente = double.Parse(frmArticle.TxtPxVente.Text);
 
-                    //Sauvegarde de l'article
-                    sim.SaveChanges();
+                        //Sauvegarde de l'article
+                        sim.SaveChanges();
 
+                        //Affichage de la mise à jour de la liste.
+                        frmArticle.LblResultatModificationArticle.Text = "Article modifié avec succes!";
+                        //frmArticle.Server.Transfer("RechercherArticle.aspx");
+                    }
+                }
+                catch (Exception)
+                {
 
-                    //Affichage de la mise à jour de la liste.
-                    //frmArticle.Server.Transfer("RechercherArticle.aspx");
+                    frmArticle.LblResultatModificationArticle.Text = "Les prix d'achat et de ventes nombre seulement!";
+
                 }
             }
 

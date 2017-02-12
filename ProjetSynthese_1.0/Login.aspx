@@ -12,7 +12,7 @@
     <div class="container" style="margin-top: 5%;">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-primary">
-                <div class="panel-heading h3">Authentification</div>
+                <div class="panel-heading h3 text-center">Authentification</div>
                 <div class="panel-body">
 
                     <!-- Login Form -->
