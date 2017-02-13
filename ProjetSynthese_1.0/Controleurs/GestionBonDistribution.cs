@@ -37,7 +37,7 @@ namespace ProjetSynthese_1._0.Controleurs
                             {
                                 numArticle = numArticle,
                                 quantite = quantite,
-                                Article=article
+                                //Article=article
                             };
                             bonDistribution.LigneBonDistributions.Add(ligne);
                         }
@@ -45,9 +45,6 @@ namespace ProjetSynthese_1._0.Controleurs
                         {
                             ligne.quantite += quantite;
                         }
-
-                        //Mise à jour de la quantité dans le stock central
-                        stockCentral.qte -= quantite;
 
                         frm.GridViewDistribution.DataSource = bonDistribution.LigneBonDistributions;
                         frm.GridViewDistribution.DataBind();
@@ -133,6 +130,12 @@ namespace ProjetSynthese_1._0.Controleurs
 
             using (var sim = new SIM_Context())
             {
+                //Mise à jour de la quantite du stock centrale pour chaque article distribué
+                foreach (LigneBonDistribution l in bnd.LigneBonDistributions)
+                {
+                    sim.Articles.Find(l.numArticle).StockCentral.qte -= l.quantite;
+                }
+
                 //Sauvegarde du bon de distribution
                 bnd = sim.BonDistributions.Add(bnd);
                 int result = sim.SaveChanges();
