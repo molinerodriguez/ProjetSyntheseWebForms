@@ -31,24 +31,6 @@ namespace ProjetSynthese_1._0 {
         protected global::System.Web.UI.WebControls.TextBox txtNom;
         
         /// <summary>
-        /// Contrôle lblCategorie.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCategorie;
-        
-        /// <summary>
-        /// Contrôle txtCategorie.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCategorie;
-        
-        /// <summary>
         /// Contrôle btnRechercher.
         /// </summary>
         /// <remarks>
@@ -58,13 +40,13 @@ namespace ProjetSynthese_1._0 {
         protected global::System.Web.UI.WebControls.Button btnRechercher;
         
         /// <summary>
-        /// Contrôle GridEtatStock.
+        /// Contrôle gridEtatStock.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridEtatStock;
+        protected global::System.Web.UI.WebControls.GridView gridEtatStock;
         
         /// <summary>
         /// Contrôle btnImprimer.

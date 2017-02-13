@@ -2,14 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Label ID="lblNom" runat="server" Text="Nom Article"></asp:Label>
     <asp:TextBox ID="txtNom" runat="server"></asp:TextBox>
-    <asp:Label ID="lblCategorie" runat="server" Text="Categorie"></asp:Label>
-    <asp:TextBox ID="txtCategorie" runat="server"></asp:TextBox>
     <asp:Button ID="btnRechercher" runat="server" Text="Générer etat de stock" OnClick="btnRechercher_Click"/>
     <br/>
 
     <hr>
 
-    <asp:GridView ID="GridEtatStock" runat="server"></asp:GridView>
+    <asp:GridView ID="gridEtatStock" runat="server"></asp:GridView>
     <br/>
 
     <hr>

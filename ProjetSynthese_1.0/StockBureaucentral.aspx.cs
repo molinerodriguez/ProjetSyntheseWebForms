@@ -13,26 +13,22 @@ namespace ProjetSynthese_1._0
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                GestionnaireStock.AfficherEtatStockCentral(this,false);
+            }
         }
 
         protected void btnRechercher_Click(object sender, EventArgs e)
         {
-            using (var sim = new SIM_Context())
-            {
-                var result = from s in sim.StockCentrals
-                                 /*where s.Article.nom == "" || s.Article.categorie == ""*/
-                             select new
-                             {
-                                 Numero = s.Article.numArticle,
-                                 Nom = s.Article.nom,
-                                 Catetorie = s.Article.categorie,
-                                 QteEnStock = s.Article.StockCentral.qte
-                             };
-
-                this.GridEtatStock.DataSource = result.ToList();
-                this.GridEtatStock.DataBind();
-            }
+            GestionnaireStock.AfficherEtatStockCentral(this,true);
         }
+
+        #region Proprietes
+        public TextBox TxtNom { get { return this.txtNom; } }
+        public Button BtnRechercher { get { return this.btnRechercher; } }
+        public Button BtnImprimer { get { return this.btnImprimer; } }
+        public GridView GridEtatStock { get { return this.gridEtatStock; } }
+        #endregion
     }
 }
