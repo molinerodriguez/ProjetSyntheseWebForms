@@ -84,8 +84,6 @@ namespace ProjetSynthese_1._0.Controleurs
                     //https://www.youtube.com/watch?v=xvrr-gZ2UJQ
                     //Menus
                     Menu menu = master.FindControl("menuPrincipale") as Menu;
-
-
                     menu.Items.Add(new MenuItem("Article"));
                     menu.Items.Add(new MenuItem("Fournisseur"));
                     menu.Items.Add(new MenuItem("Commande"));
@@ -102,8 +100,6 @@ namespace ProjetSynthese_1._0.Controleurs
                     menu.Items[0].ChildItems.Add(new MenuItem("Fixer qte critique"));
                     menu.Items[0].ChildItems[2].NavigateUrl = "#";
                     #endregion
-
-
 
                     #region fournisseur
                     menu.Items[1].ChildItems.Add(new MenuItem("Nouveau fournisseur"));
@@ -132,6 +128,14 @@ namespace ProjetSynthese_1._0.Controleurs
 
                     menu.Items[3].ChildItems.Add(new MenuItem("Modifier bon de distribution"));
                     menu.Items[3].ChildItems[1].NavigateUrl = "#";
+                    #endregion
+
+                    #region Rapport
+                    menu.Items[4].ChildItems.Add(new MenuItem("Stock bureau central"));
+                    menu.Items[4].ChildItems[0].NavigateUrl = "~/StockBureaucentral.aspx";
+
+                    menu.Items[4].ChildItems.Add(new MenuItem("Etat de stock des Annexes"));
+                    menu.Items[4].ChildItems[1].NavigateUrl = "~/StockFiliales.aspx";
                     #endregion
                 }
                 if (user.type == "caissier")
