@@ -145,8 +145,35 @@ namespace ProjetSynthese_1._0.Controleurs
                     menu.Items.Add(new MenuItem("Article"));
                     menu.Items.Add(new MenuItem("Vente"));
                     menu.Items.Add(new MenuItem("Distribution"));
+                    menu.Items.Add(new MenuItem("Notification"));
                     menu.Items.Add(new MenuItem("Rapports"));
                     //Sous menus
+                    #region article
+                    menu.Items[0].ChildItems.Add(new MenuItem("Rechercher un article"));
+                    menu.Items[0].ChildItems[0].NavigateUrl = "#";
+                    #endregion
+
+                    #region Vente
+                    menu.Items[1].ChildItems.Add(new MenuItem("Nouvelle vente"));
+                    menu.Items[1].ChildItems[0].NavigateUrl = "~/NouvelleVente.aspx";
+                    #endregion
+
+                    #region Distribution
+                    menu.Items[2].ChildItems.Add(new MenuItem("Recevoir distribution"));
+                    menu.Items[2].ChildItems[0].NavigateUrl = "~/RecevoirDistribution.aspx";
+                    #endregion
+
+                    #region Notification
+                    menu.Items[3].ChildItems.Add(new MenuItem("Afficher notifications"));
+                    menu.Items[3].ChildItems[0].NavigateUrl = "#";
+                    #endregion
+
+                    #region Rapports
+                    menu.Items[4].ChildItems.Add(new MenuItem("Ventes de la journée"));
+                    menu.Items[4].ChildItems[0].NavigateUrl = "#";
+                    #endregion
+
+
                 }
             }
         }
