@@ -41,7 +41,7 @@
         </tr>
         <tr>
             <td colspan="4">
-                <asp:GridView ID="gridBonDistribution" runat="server"></asp:GridView>
+                <asp:GridView ID="gridBonDistribution" runat="server" CssClass="table Grid"></asp:GridView>
             </td>
         </tr>
         <tr>

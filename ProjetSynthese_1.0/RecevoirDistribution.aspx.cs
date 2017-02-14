@@ -38,14 +38,27 @@ namespace ProjetSynthese_1._0
 
         protected void btnRechercher_Click(object sender, EventArgs e)
         {
+            //A deplacer dans le controleur approprie
             BonDistribution bnd = null;
             using (var sim = new SIM_Context())
             {
-                bnd = sim.BonDistributions.Find(this.TxtNumBondistribution.Text);
+                bnd = sim.BonDistributions.Find(int.Parse(this.TxtNumBondistribution.Text));
                 if (bnd!=null)
                 {
                     this.TxtNumBondistribution.Text = bnd.numBonDistribution.ToString();
                     this.TxtNomFiliale.Text = bnd.Filiale.nom;
+                    this.TxtDateBonDistribution.Text = bnd.dateBonDistribution.ToShortDateString();
+                    this.GridBonDistribution.DataSource = (from b in bnd.LigneBonDistributions
+                                                           select new
+                                                           {
+                                                               NumeroArticle=b.numArticle,
+                                                               NomArticle=b.Article.nom,
+                                                               Description=b.Article.description,
+                                                               Quantite=b.quantite
+                                                           }
+                                                         ).ToList();
+                    this.GridBonDistribution.DataBind();
+
                 }
             }
         }
