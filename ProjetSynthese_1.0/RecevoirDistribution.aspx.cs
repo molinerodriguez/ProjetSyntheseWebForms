@@ -38,7 +38,16 @@ namespace ProjetSynthese_1._0
 
         protected void btnRechercher_Click(object sender, EventArgs e)
         {
-
+            BonDistribution bnd = null;
+            using (var sim = new SIM_Context())
+            {
+                bnd = sim.BonDistributions.Find(this.TxtNumBondistribution.Text);
+                if (bnd!=null)
+                {
+                    this.TxtNumBondistribution.Text = bnd.numBonDistribution.ToString();
+                    this.TxtNomFiliale.Text = bnd.Filiale.nom;
+                }
+            }
         }
     }
 }
