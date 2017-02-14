@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Label ID="lblNumeroBonDitribution" runat="server" Text="Numéro bon distribution"></asp:Label>
     <asp:TextBox ID="txtNumBondistribution" runat="server"></asp:TextBox>
+    <asp:Button ID="btnRechercher" runat="server" Text="Rechercher" />
     <br/>
 
     <hr>
