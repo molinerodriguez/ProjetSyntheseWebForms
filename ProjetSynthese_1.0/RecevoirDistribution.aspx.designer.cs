@@ -31,16 +31,16 @@ namespace ProjetSynthese_1._0 {
         protected global::System.Web.UI.WebControls.TextBox txtNumBondistribution;
         
         /// <summary>
-        /// Contrôle btnRechercher.
+        /// btnRechercher control.
         /// </summary>
         /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRechercher;
         
         /// <summary>
-        /// Contrôle lblNomFiliale.
+        /// lblNomFiliale control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
