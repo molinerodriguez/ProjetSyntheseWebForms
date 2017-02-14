@@ -27,7 +27,8 @@
 
     <asp:Label ID="lblNumeroBonDitribution" runat="server" Text="Numéro bon distribution"></asp:Label>
     <asp:TextBox ID="txtNumBondistribution" runat="server"></asp:TextBox>
-    <br />
+    <asp:Button ID="btnRechercher" runat="server" Text="Rechercher" OnClick="btnRechercher_Click"/>
+    <br/>
 
     <hr>
 
