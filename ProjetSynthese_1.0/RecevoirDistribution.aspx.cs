@@ -22,5 +22,15 @@ namespace ProjetSynthese_1._0
         public Button BtnRecevoir { get { return this.btnRecevoir; } }
         public Button BtnImprimer { get { return this.btnImprimer; } }
         #endregion
+
+        protected void btnRecevoir_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnImprimer_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

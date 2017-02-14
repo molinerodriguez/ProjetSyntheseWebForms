@@ -21,7 +21,7 @@
 
     <hr>
 
-    <asp:Button ID="btnRecevoir" runat="server" Text="Recevoir" />
-    <asp:Button ID="btnImprimer" runat="server" Text="Imprimer" />
+    <asp:Button ID="btnRecevoir" runat="server" Text="Recevoir" OnClick="btnRecevoir_Click"/>
+    <asp:Button ID="btnImprimer" runat="server" Text="Imprimer" OnClick="btnImprimer_Click"/>
 
 </asp:Content>
