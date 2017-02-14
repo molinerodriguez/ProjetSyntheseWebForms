@@ -35,5 +35,10 @@ namespace ProjetSynthese_1._0
         {
 
         }
+
+        protected void btnRechercher_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
