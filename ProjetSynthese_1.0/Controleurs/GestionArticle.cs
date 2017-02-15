@@ -147,6 +147,36 @@ namespace ProjetSynthese_1._0.Controleurs
             }
         }
 
+        //Lister articles dans la fenetre vente
+        public static void ListerArticles(NouvelleVente frm)
+        {
+            if (!frm.TxtArticle.Text.Equals(""))
+            {
+                var sim = new SIM_Context();
+                
+                Utilisateur user = frm.Session["utilisateur"] as Utilisateur;
+                var result = from a in sim.Stocks
+                             where a.numFiliale == user.numFiliale
+                             && a.Article.nom.ToUpper().StartsWith(frm.TxtArticle.Text.ToUpper())
+                             && a.qteEnStock > 0
+                            select new
+                            {
+                                NumArticle = a.numArticle,
+                                NomArticle = a.Article.nom,
+                                Description = a.Article.description,
+                                PrixVente=a.Article.prixVente,
+                                QuantiteEnStock = a.qteEnStock
+                            };
+
+                if (result.Count() > 0)
+                {
+                    frm.GridArticle.DataSource = result.ToList();
+                    frm.GridArticle.DataBind();
+                }
+                
+            }
+        }
+
         public static void Modifier(ModifierArticle frmArticle)
         {
             TextBox nom = frmArticle.TxtNom;

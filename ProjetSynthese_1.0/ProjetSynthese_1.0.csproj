@@ -139,6 +139,7 @@
     <Content Include="NouvelleBonDistribution.aspx" />
     <Content Include="StockBureaucentral.aspx" />
     <Content Include="RecevoirDistribution.aspx" />
+    <Content Include="NouvelleVente.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -212,6 +213,7 @@
     <Compile Include="Accueil.aspx.designer.cs">
       <DependentUpon>Accueil.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controleurs\GestionVente.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -324,6 +326,13 @@
     </Compile>
     <Compile Include="RecevoirDistribution.aspx.designer.cs">
       <DependentUpon>RecevoirDistribution.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NouvelleVente.aspx.cs">
+      <DependentUpon>NouvelleVente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NouvelleVente.aspx.designer.cs">
+      <DependentUpon>NouvelleVente.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
