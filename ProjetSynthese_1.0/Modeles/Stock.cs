@@ -19,14 +19,8 @@ namespace ProjetSynthese_1._0.Modeles
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int numFiliale { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int qteEnStock { get; set; }
 
-        [Key]
-        [Column(Order = 3)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int qteMoyenneMin { get; set; }
 
         public virtual Article Article { get; set; }

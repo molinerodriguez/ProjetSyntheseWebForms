@@ -27,8 +27,7 @@ namespace ProjetSynthese_1._0
         public TextBox TxtTelephone { get { return this.txtTelephone; } }
         public Label LblResultatNouveauFournisseur
         {
-            get { return LblResultatNouveauFournisseur; }
-            set { LblResultatNouveauFournisseur = value; }
+            get { return this.lblResultatNouveauFournisseur; }
         }
         #endregion
     }

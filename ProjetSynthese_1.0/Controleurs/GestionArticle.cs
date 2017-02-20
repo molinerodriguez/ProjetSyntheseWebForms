@@ -100,7 +100,7 @@ namespace ProjetSynthese_1._0.Controleurs
             using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
             {
                 IEnumerable<Article> result = from a in sim.Articles
-                                              where a.nom == nom
+                                              where a.nom.ToUpper().StartsWith(nom.ToUpper())
                                               select a;
                 if (result.Count() > 0)
                 {

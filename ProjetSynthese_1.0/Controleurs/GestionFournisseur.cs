@@ -30,7 +30,7 @@ namespace ProjetSynthese_1._0.Controleurs
                         //Message de confirmation!
                         frm.LblResultatNouveauFournisseur.Text = "Fournisseur enregistrer avec SUCCES!";
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
 
                         frm.LblResultatNouveauFournisseur.Text = "Erreur enregistrement fournisseur";
