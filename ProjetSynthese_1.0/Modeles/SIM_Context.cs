@@ -7,17 +7,10 @@ namespace ProjetSynthese_1._0.Modeles
 
     public partial class SIM_Context : DbContext
     {
-        //Attribut representant l'instance du contexte
-        //private static SIM_Context instance = null;
-
-        //Contructeur
-        /*private*/public SIM_Context() : base("name=SIM_Context") { }
-
-        //Methode gerant l'instance du contexte
-        //public static SIM_Context getInstance()
-        //{
-        //    return (instance == null) ? instance = new SIM_Context() : instance;
-        //}
+        public SIM_Context()
+            : base("name=SIM_Context")
+        {
+        }
 
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<BonDistribution> BonDistributions { get; set; }
@@ -26,6 +19,7 @@ namespace ProjetSynthese_1._0.Modeles
         public virtual DbSet<Fournisseur> Fournisseurs { get; set; }
         public virtual DbSet<NotificationStockCritique> NotificationStockCritiques { get; set; }
         public virtual DbSet<Paiement> Paiements { get; set; }
+        public virtual DbSet<Stock> Stocks { get; set; }
         public virtual DbSet<StockCentral> StockCentrals { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Utilisateur> Utilisateurs { get; set; }
@@ -34,7 +28,6 @@ namespace ProjetSynthese_1._0.Modeles
         public virtual DbSet<LigneCommande> LigneCommandes { get; set; }
         public virtual DbSet<LigneVente> LigneVentes { get; set; }
         public virtual DbSet<NotificationBonDistribution> NotificationBonDistributions { get; set; }
-        public virtual DbSet<Stock> Stocks { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

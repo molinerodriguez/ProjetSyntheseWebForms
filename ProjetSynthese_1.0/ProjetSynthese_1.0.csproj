@@ -226,7 +226,6 @@
     </Compile>
     <Compile Include="Modeles\Article.cs" />
     <Compile Include="Modeles\BonDistribution.cs" />
-    <Compile Include="Modeles\CloneDotNetDojo.cs" />
     <Compile Include="Modeles\Commande.cs" />
     <Compile Include="Modeles\Filiale.cs" />
     <Compile Include="Modeles\Fournisseur.cs" />
