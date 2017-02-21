@@ -29,10 +29,10 @@
             <td>
                 <asp:TextBox ID="txtArticle" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
+            <td></td>
             <td>
                 <asp:Button ID="btnRechercher" runat="server" Text="Rechercher" OnClick="btnRechercher_Click" CssClass="btn btn-primary btn-block" />
             </td>
-            <td></td>
         </tr>
         <tr>
             <td colspan="4">
@@ -66,15 +66,16 @@
             </td>
             <td>
                 <asp:TextBox ID="txtQuantite" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:Label ID="lblTxtQuantite" runat="server" Text="" ForeColor="Red"></asp:Label>
             </td>
         </tr>
         <tr>
+            <td></td>
+            <td></td>
+            <td></td>
             <td>
                 <asp:Button ID="btnAjouter" runat="server" Text="Ajouter" Enabled="false" OnClick="btnAjouter_Click" CssClass="btn btn-primary btn-block" />
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
         </tr>
         <tr>
             <td colspan="4">
@@ -93,12 +94,14 @@
             <td></td>
         </tr>
         <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <asp:Label ID="lblResultatValiderNouvelVente" runat="server" Text="" ForeColor="Red"></asp:Label>
+            </td>
             <td>
                 <asp:Button ID="btnValider" runat="server" Text="Valider" Enabled="false" OnClick="btnValider_Click" CssClass="btn btn-primary btn-block" />
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
         </tr>
     </table>
 

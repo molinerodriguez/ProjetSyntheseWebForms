@@ -94,15 +94,6 @@ namespace ProjetSynthese_1._0 {
         protected global::System.Web.UI.WebControls.TextBox txtDate;
         
         /// <summary>
-        /// lblLignesCommande control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLignesCommande;
-        
-        /// <summary>
         /// gridLignesCommande control.
         /// </summary>
         /// <remarks>
@@ -110,6 +101,15 @@ namespace ProjetSynthese_1._0 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridLignesCommande;
+        
+        /// <summary>
+        /// lblResultatRecevoir control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResultatRecevoir;
         
         /// <summary>
         /// btnRecevoir control.

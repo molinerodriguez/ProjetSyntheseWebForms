@@ -56,6 +56,10 @@ namespace ProjetSynthese_1._0
         public Button BtnAjouter { get { return this.btnAjouter; } }
 
         public Label LblResultatTxtQuantite { get { return lblResultatTxtQuantite; } }
+        public Label LblResultatEnregistrer { get { return lblResultatEnregistrer; } }
+
+
+        
         #endregion
 
         protected void btnAjouter_Click(object sender, EventArgs e)

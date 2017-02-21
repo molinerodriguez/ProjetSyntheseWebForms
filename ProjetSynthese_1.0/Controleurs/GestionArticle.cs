@@ -154,6 +154,8 @@ namespace ProjetSynthese_1._0.Controleurs
         //Lister articles dans la fenetre vente
         public static void ListerArticles(NouvelleVente frm)
         {
+            frm.LblTxtQuantite.Text = "";
+
             if (!frm.TxtArticle.Text.Equals(""))
             {
                 var sim = new SIM_Context();

@@ -32,6 +32,10 @@ namespace ProjetSynthese_1._0
         public GridView GridLigneVente { get { return this.gridLigneVente; } }
         public TextBox TxtMontant { get { return this.txtMontant; } }
         public Button BtnValider { get { return this.btnValider; } }
+
+        public Label LblTxtQuantite { get { return this.lblTxtQuantite; } }
+        public Label LblResultatValiderNouvelVente { get { return this.lblResultatValiderNouvelVente; } }
+        
         #endregion
 
         protected void btnRechercher_Click(object sender, EventArgs e)

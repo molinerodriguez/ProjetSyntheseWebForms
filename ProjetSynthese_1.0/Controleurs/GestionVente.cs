@@ -11,7 +11,7 @@ namespace ProjetSynthese_1._0.Controleurs
         //Initialiser la vente
         public static void InitialiserVente(NouvelleVente frm)
         {
-            
+
             Utilisateur user = frm.Session["utilisateur"] as Utilisateur;
 
             Vente vente = new Vente();
@@ -24,47 +24,57 @@ namespace ProjetSynthese_1._0.Controleurs
         //Ajouter une ligne vente dans la vente encours
         public static void Ajouter(NouvelleVente frm)
         {
-            int numArticle = int.Parse(frm.TxtNumArticle.Text);
-            int quantite = int.Parse(frm.TxtQuantite.Text);
-            double prixVente = double.Parse(frm.TxtPrixVente.Text);
-            Utilisateur user = frm.Session["utilisateur"] as Utilisateur;
-            Vente vente = frm.Session["vente"] as Vente;
-
-            int qteStock = GetQuantiteEnStock(numArticle, user.numFiliale);
-            if ( qteStock > 0 && qteStock >= quantite)
+            try
             {
-                //Récuperer une ligne vente encours
-                LigneVente ligne = RechercherLigneVente(numArticle, vente.LigneVentes);
+                int numArticle = int.Parse(frm.TxtNumArticle.Text);
+                int quantite = int.Parse(frm.TxtQuantite.Text);
+                double prixVente = double.Parse(frm.TxtPrixVente.Text);
+                Utilisateur user = frm.Session["utilisateur"] as Utilisateur;
+                Vente vente = frm.Session["vente"] as Vente;
 
-                if (ligne == null)
+                int qteStock = GetQuantiteEnStock(numArticle, user.numFiliale);
+                if (qteStock > 0 && qteStock >= quantite)
                 {
-                    vente.LigneVentes.Add(
-                        new LigneVente
-                        {
-                            numArticle = numArticle,
-                            quantite = quantite,
-                            prix = prixVente
-                        }
-                        );
+                    //Récuperer une ligne vente encours
+                    LigneVente ligne = RechercherLigneVente(numArticle, vente.LigneVentes);
 
-                    vente.montant += prixVente * quantite;
-                    frm.TxtMontant.Text = vente.montant.ToString();
+                    if (ligne == null)
+                    {
+                        vente.LigneVentes.Add(
+                            new LigneVente
+                            {
+                                numArticle = numArticle,
+                                quantite = quantite,
+                                prix = prixVente
+                            }
+                            );
+
+                        vente.montant += prixVente * quantite;
+                        frm.TxtMontant.Text = vente.montant.ToString();
+                    }
+                    else
+                    {
+                        ligne.quantite += quantite;
+                        vente.montant += prixVente * quantite;
+                        frm.TxtMontant.Text = vente.montant.ToString();
+                    }
+
+                    frm.GridLigneVente.DataSource = vente.LigneVentes;
+                    frm.GridLigneVente.DataBind();
+
+                    frm.LblTxtQuantite.Text = "Ajout avec succes!";
                 }
                 else
                 {
-                    ligne.quantite += quantite;
-                    vente.montant += prixVente * quantite;
-                    frm.TxtMontant.Text = vente.montant.ToString();
+                    //Message : Qte en stock 
+                    frm.LblTxtQuantite.Text = "Quantité en stock insufisante!";
                 }
-
-                frm.GridLigneVente.DataSource = vente.LigneVentes;
-                frm.GridLigneVente.DataBind();
             }
-            else
+            catch (Exception)
             {
-                //Message : Qte en stock 
+                frm.LblTxtQuantite.Text = "En numérique obligatoire!";
             }
-            
+
         }
 
         //Rechercher une ligne de vente dans la vente encours
@@ -75,7 +85,7 @@ namespace ProjetSynthese_1._0.Controleurs
             IEnumerable<LigneVente> result = from l in ligneVente
                                              where l.numArticle == numArt
                                              select l;
-            if (result.Count()>0)
+            if (result.Count() > 0)
             {
                 ligne = result.Single();
             }
@@ -126,6 +136,9 @@ namespace ProjetSynthese_1._0.Controleurs
                 frm.TxtNumVente.Text = vente.numVente.ToString();
                 frm.TxtDateVente.Text = vente.dateVente.ToShortDateString();
                 //Message: La vente a été éffectuée avec succès
+                frm.LblResultatValiderNouvelVente.Text = "La vente a été validé!";
+                frm.BtnValider.Enabled = false;
+
             }
         }
 

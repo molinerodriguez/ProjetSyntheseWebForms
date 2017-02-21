@@ -24,6 +24,9 @@ namespace ProjetSynthese_1._0
         public GridView GridBonDistribution { get { return this.gridBonDistribution; } }
         public Button BtnRecevoir { get { return this.btnRecevoir; } }
         public Button BtnImprimer { get { return this.btnImprimer; } }
+        public Label LblResultatRecevoirBonDistribution { get { return this.lblResultatRecevoirBonDistribution; } }
+
+
         #endregion
 
         protected void btnRecevoir_Click(object sender, EventArgs e)
@@ -42,7 +45,7 @@ namespace ProjetSynthese_1._0
                                      where s.numArticle == l.numArticle && s.numFiliale == bnd.numFiliale
                                      select s;
 
-                        if (result.Count()==0)//Premiere distribution de l'article dans cette filiale
+                        if (result.Count() == 0)//Premiere distribution de l'article dans cette filiale
                         {
                             l.Article.Stocks.Add(
                                 new Stock
@@ -57,43 +60,62 @@ namespace ProjetSynthese_1._0
                         else //Le stock de cet article existe deja dans cette filiale
                         {
                             result.Single().qteEnStock += l.quantite; //Peux pas distribuer un article deux fois!!!!! pour la meme filiale
+
                         }
                     }
                     sim.SaveChanges();
                     //Message de confirmation!
+                    LblResultatRecevoirBonDistribution.Text = "Le bon a été reçu avec succes!";
+                    BtnRecevoir.Enabled = false;
                 }
             }
         }
 
         protected void btnImprimer_Click(object sender, EventArgs e)
         {
+            lblResultatRecevoirBonDistribution.Text = "Le bon a été imprimé avec succes!";
 
         }
 
         protected void btnRechercher_Click(object sender, EventArgs e)
         {
-            //A deplacer dans le controleur approprie
-            BonDistribution bnd = null;
-            using (var sim = new SIM_Context())
-            {
-                bnd = sim.BonDistributions.Find(int.Parse(this.TxtNumBondistribution.Text));
-                if (bnd!=null)
-                {
-                    this.TxtNumBondistribution.Text = bnd.numBonDistribution.ToString();
-                    this.TxtNomFiliale.Text = bnd.Filiale.nom;
-                    this.TxtDateBonDistribution.Text = bnd.dateBonDistribution.ToShortDateString();
-                    this.GridBonDistribution.DataSource = (from b in bnd.LigneBonDistributions
-                                                           select new
-                                                           {
-                                                               NumeroArticle=b.numArticle,
-                                                               NomArticle=b.Article.nom,
-                                                               Description=b.Article.description,
-                                                               Quantite=b.quantite
-                                                           }
-                                                         ).ToList();
-                    this.GridBonDistribution.DataBind();
 
+
+            try
+            {
+                //A deplacer dans le controleur approprie
+                BonDistribution bnd = null;
+                using (var sim = new SIM_Context())
+                {
+                    bnd = sim.BonDistributions.Find(int.Parse(this.TxtNumBondistribution.Text));
+                    if (bnd != null)
+                    {
+                        this.TxtNumBondistribution.Text = bnd.numBonDistribution.ToString();
+                        this.TxtNomFiliale.Text = bnd.Filiale.nom;
+                        this.TxtDateBonDistribution.Text = bnd.dateBonDistribution.ToShortDateString();
+                        this.GridBonDistribution.DataSource = (from b in bnd.LigneBonDistributions
+                                                               select new
+                                                               {
+                                                                   NumeroArticle = b.numArticle,
+                                                                   NomArticle = b.Article.nom,
+                                                                   Description = b.Article.description,
+                                                                   Quantite = b.quantite
+                                                               }
+                                                             ).ToList();
+                        this.GridBonDistribution.DataBind();
+
+                    }
+                    lblResultatNumeroBonDistribution.Text = "";
+                    BtnRecevoir.Enabled = true;
+                    BtnImprimer.Enabled = true;
+                    BtnRechercher.Enabled = false;
+                    txtNumBondistribution.Enabled = false;
                 }
+
+            }
+            catch (Exception)
+            {
+                lblResultatNumeroBonDistribution.Text = "Champ obligatoire en numérique!";
             }
         }
     }

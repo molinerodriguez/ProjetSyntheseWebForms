@@ -139,6 +139,7 @@ namespace ProjetSynthese_1._0.Controleurs
 
                 frm.BtnEnregistrer.Enabled = false;
                 frm.Session.Remove("commande");
+                frm.LblResultatEnregistrer.Text = "Nouvelle commande enregistré avec succes!";
                 //Message de confirmation : La commande a été sauvegardée avec succes
             }
 
@@ -240,6 +241,10 @@ namespace ProjetSynthese_1._0.Controleurs
 
                     int result = sim.SaveChanges();
                     frm.Session.Remove("numCommande");
+                    frm.LblResultatRecevoir.Text = "La commande a été reçu avec succes!";
+                    frm.BtnRecevoir.Enabled = false;
+                    frm.BtnImprimer.Enabled = false;
+
                     //Message de confirmation: La réception de la commande a été faite avec succes et les stocks ont été mis à jour!. 
                 }
 
