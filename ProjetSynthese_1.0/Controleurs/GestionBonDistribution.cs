@@ -18,51 +18,66 @@ namespace ProjetSynthese_1._0.Controleurs
         //Ajout d'une ligne de bon de distribution
         public static void Ajouter(NouvelleBonDistribution frm)
         {
-            int numArticle = int.Parse(frm.TxtNumArticle.Text);
-            int quantite = int.Parse(frm.TxtQuantite.Text);
-            //Avant d'aller plus loin, verifier si l'article est en stock ou possede la qte demandée
-            Article article = GestionArticle.Rechercher(numArticle);
-            if (article != null)
+            try
             {
-                StockCentral stockCentral = article.StockCentral;
-                if (stockCentral != null)
+                int numArticle = int.Parse(frm.TxtNumArticle.Text);
+                int quantite = int.Parse(frm.TxtQuantite.Text);
+                //Avant d'aller plus loin, verifier si l'article est en stock ou possede la qte demandée
+                Article article = GestionArticle.Rechercher(numArticle);
+                if (article != null)
                 {
-                    if (stockCentral.qte >= quantite)
+                    StockCentral stockCentral = article.StockCentral;
+                    if (stockCentral != null)
                     {
-                        BonDistribution bonDistribution = frm.Session["bonDistribution"] as BonDistribution;
-                        LigneBonDistribution ligne = RechercherLigneBonDistribution(numArticle, bonDistribution.LigneBonDistributions);
-                        if (ligne == null)
+                        if (stockCentral.qte >= quantite)
                         {
-                            ligne = new LigneBonDistribution
+                            BonDistribution bonDistribution = frm.Session["bonDistribution"] as BonDistribution;
+                            LigneBonDistribution ligne = RechercherLigneBonDistribution(numArticle, bonDistribution.LigneBonDistributions);
+                            if (ligne == null)
                             {
-                                numArticle = numArticle,
-                                quantite = quantite,
-                                //Article=article
-                            };
-                            bonDistribution.LigneBonDistributions.Add(ligne);
+                                ligne = new LigneBonDistribution
+                                {
+                                    numArticle = numArticle,
+                                    quantite = quantite,
+                                    //Article=article
+                                };
+                                bonDistribution.LigneBonDistributions.Add(ligne);
+                            }
+                            else
+                            {
+                                ligne.quantite += quantite;
+                            }
+
+                            frm.GridViewDistribution.DataSource = bonDistribution.LigneBonDistributions;
+                            frm.GridViewDistribution.DataBind();
+
+                            frm.TxtNumArticle.Text = "";
+                            frm.TxtNom.Text = "";
+                            frm.TxtQuantite.Text = "";
+                            frm.LblResultatEnregistrer.Text = "";
+                            frm.LblResultatTxtQuantite.Text = "Article a été ajouté dans la liste bon distribution";
                         }
                         else
                         {
-                            ligne.quantite += quantite;
+                            //Message: Quantite insufisante, la quantite en etock est : stockCentral.qte
+                            frm.LblResultatTxtQuantite.Text = "Quantite insufisante! La quantite en etock est : " + stockCentral.qte;
                         }
-
-                        frm.GridViewDistribution.DataSource = bonDistribution.LigneBonDistributions;
-                        frm.GridViewDistribution.DataBind();
-
-                        frm.TxtNumArticle.Text = "";
-                        frm.TxtNom.Text = "";
-                        frm.TxtQuantite.Text = "";
                     }
                     else
                     {
-                        //Message: Quantite insufisante, la quantite en etock est : stockCentral.qte
+                        //Message: Cet article n'est pas en stock, Veuillez commander SVP!
+                        frm.LblResultatTxtQuantite.Text = "Cet article n'est pas en stock, Veuillez commander SVP!";
                     }
                 }
-                else
-                {
-                    //Message: Cet article n'est pas en stock, Veuillez commander SVP!
-                }
+
+
             }
+            catch (Exception e)
+            {
+                frm.LblResultatTxtQuantite.Text = "Champ oblitatoire et en numérique!";
+            }
+
+            
 
         }
 
@@ -116,7 +131,7 @@ namespace ProjetSynthese_1._0.Controleurs
 
             //Completion de l'objet bondistribution
             bnd.numFiliale = filiale.numFiliale;
-            bnd.dateBonDistribution = frm.CalDateBonDistribution.SelectedDate;
+            bnd.dateBonDistribution = DateTime.Now;
             bnd.nomUtilisateur = utilisateur.nomUtilisateur;
             //bnd.Filiale = filiale;
             bnd.NotificationBonDistributions.Add(
@@ -149,6 +164,8 @@ namespace ProjetSynthese_1._0.Controleurs
 
                 frm.BtnEnregistrer.Enabled = false;
                 frm.Session.Remove("bonDistribution");
+                frm.LblResultatEnregistrer.Text = "Bon de distribution enregistré avec succes!";
+                frm.LblResultatTxtQuantite.Text = "";
                 //Message de confirmation : Le bon de distribution a été sauvegardé avec succès!
             }
         }

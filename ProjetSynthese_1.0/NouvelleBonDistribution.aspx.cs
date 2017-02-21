@@ -14,7 +14,6 @@ namespace ProjetSynthese_1._0
         public TextBox TxtNumBonDistribution { get { return this.txtNumBonDistribution; } }
         public TextBox TxtInfoFiliale { get { return this.txtInfoFiliale; } }
         public DropDownList CmbFiliale { get { return this.cmbFiliale; } }
-        public Calendar CalDateBonDistribution { get { return this.calDateBonDistribution; } }
         public TextBox TxtArticle { get { return this.txtArticle; } }
         public Button BtnRechercher { get { return this.btnRechercher; } }
         public GridView GridArticles { get { return this.gridArticles; } }
@@ -24,6 +23,9 @@ namespace ProjetSynthese_1._0
         public Button BtnAjouter { get { return this.btnAjouter; } }
         public GridView GridViewDistribution { get { return this.gridViewDistribution; } }
         public Button BtnEnregistrer { get { return this.btnEnregistrer; } }
+
+        public Label LblResultatTxtQuantite { get { return this.lblResultatTxtQuantite; } }
+        public Label LblResultatEnregistrer { get { return this.lblResultatEnregistrer; } }
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)

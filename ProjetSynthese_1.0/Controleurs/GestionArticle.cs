@@ -145,6 +145,10 @@ namespace ProjetSynthese_1._0.Controleurs
                     frm.GridArticles.DataBind();
                 }
             }
+            frm.LblResultatTxtQuantite.Text = "";
+            frm.TxtQuantite.Text = "";
+            frm.TxtNom.Text = "";
+            frm.TxtNumArticle.Text = "";
         }
 
         //Lister articles dans la fenetre vente

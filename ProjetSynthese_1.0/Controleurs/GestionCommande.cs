@@ -17,43 +17,51 @@ namespace ProjetSynthese_1._0.Controleurs
             //frm.GridViewCommande.DataSource = commande.LigneCommandes;
             //frm.GridViewCommande.DataBind();
         }
-        
+
         //Ajouter un article à la commande
         public static void Ajouter(NouvelleCommande frm)
         {
-            int numArticle = int.Parse(frm.TxtNum.Text);
-            double prix= double.Parse(frm.TxtPrix.Text);
-            int quantite = int.Parse(frm.TxtQuantite.Text);
-            Commande cmd = frm.Session["commande"] as Commande;
-
-            LigneCommande ligne = RechercherLigneCommande(numArticle, cmd.LigneCommandes);
-            if (ligne==null)
+            try
             {
-                ligne = new LigneCommande
+                int numArticle = int.Parse(frm.TxtNum.Text);
+                double prix = double.Parse(frm.TxtPrix.Text);
+                int quantite = int.Parse(frm.TxtQuantite.Text);
+                Commande cmd = frm.Session["commande"] as Commande;
+
+                LigneCommande ligne = RechercherLigneCommande(numArticle, cmd.LigneCommandes);
+                if (ligne == null)
                 {
-                    numArticle = numArticle,
-                    quantite = quantite,
-                    prix = prix
-                };
-                cmd.LigneCommandes.Add(ligne);
-                cmd.montant += prix * quantite;
-                frm.TxtMontant.Text = cmd.montant.ToString();
-            }
-            else
-            {
-                ligne.quantite += quantite;
-                cmd.montant += prix * quantite;
-                frm.TxtMontant.Text = cmd.montant.ToString();
-            }
-            frm.GridViewCommande.DataSource = cmd.LigneCommandes;
-            frm.GridViewCommande.DataBind();
+                    ligne = new LigneCommande
+                    {
+                        numArticle = numArticle,
+                        quantite = quantite,
+                        prix = prix
+                    };
+                    cmd.LigneCommandes.Add(ligne);
+                    cmd.montant += prix * quantite;
+                    frm.TxtMontant.Text = cmd.montant.ToString();
+                }
+                else
+                {
+                    ligne.quantite += quantite;
+                    cmd.montant += prix * quantite;
+                    frm.TxtMontant.Text = cmd.montant.ToString();
+                }
+                frm.GridViewCommande.DataSource = cmd.LigneCommandes;
+                frm.GridViewCommande.DataBind();
 
-            frm.TxtNum.Text = "";
-            frm.TxtNom.Text = "";
-            frm.TxtPrix.Text = "";
-            frm.TxtQuantite.Text = "";
-            frm.BtnAjouter.Enabled = false;
-            frm.BtnEnregistrer.Enabled = true;
+                frm.TxtNum.Text = "";
+                frm.TxtNom.Text = "";
+                frm.TxtPrix.Text = "";
+                frm.TxtQuantite.Text = "";
+                frm.BtnAjouter.Enabled = false;
+                frm.BtnEnregistrer.Enabled = true;
+                frm.LblResultatTxtQuantite.Text = "";
+            }
+            catch (Exception e)
+            {
+                frm.LblResultatTxtQuantite.Text = "En nombre seulement";
+            }
 
         }
 
@@ -65,7 +73,7 @@ namespace ProjetSynthese_1._0.Controleurs
             IEnumerable<LigneCommande> result = from l in ligneCommande
                                                 where l.numArticle == numArticle
                                                 select l;
-            if (result.Count()>0)
+            if (result.Count() > 0)
             {
                 ligne = result.Single();
             }
@@ -86,7 +94,7 @@ namespace ProjetSynthese_1._0.Controleurs
 
                 //Suppression de la ligne
                 cmd.LigneCommandes.Remove(ligne);
-                
+
                 //Mise à jour du grid
                 frm.GridViewCommande.DataSource = cmd.LigneCommandes;
                 frm.GridViewCommande.DataBind();
@@ -102,24 +110,24 @@ namespace ProjetSynthese_1._0.Controleurs
         public static void EnregisterCommande(NouvelleCommande frm)
         {
             //L'utilisateur en cours
-            Utilisateur utilisateur= frm.Session["utilisateur"] as Utilisateur;
+            Utilisateur utilisateur = frm.Session["utilisateur"] as Utilisateur;
 
             //Mon fammeux objet commande
             Commande cmd = frm.Session["commande"] as Commande;
 
             //Recuperer le fournisseur
             Fournisseur fournisseur = GestionFournisseur.Rechercher(frm.CmbFournisseur.SelectedValue);
-            
+
             //Completion de l'objet commande
             cmd.numFournisseur = fournisseur.numFournisseur;
-            cmd.dateCommande = frm.CalDateCommande.SelectedDate;
+            cmd.dateCommande = DateTime.Now;
             cmd.nomUtilisateur = utilisateur.nomUtilisateur;
             //cmd.Fournisseur = fournisseur;
 
             using (var sim = new SIM_Context())
             {
                 //Sauvegarde de la commande
-                cmd =sim.Commandes.Add(cmd);
+                cmd = sim.Commandes.Add(cmd);
                 int result = sim.SaveChanges();
 
                 //Affichage numero commande
@@ -152,7 +160,7 @@ namespace ProjetSynthese_1._0.Controleurs
             }
 
             return commande;
-        }   
+        }
 
         //Rechercher et afficher une commande
         public static void RechercherCommande(RecevoirCommande frm)
@@ -168,8 +176,8 @@ namespace ProjetSynthese_1._0.Controleurs
                 frm.Session["numCommande"] = commande.numCommande;
 
                 //Affichage du fournisseur
-                frm.TxtFournisseur.Text = "Nom :" + commande.Fournisseur.nom + 
-                                          " Adresse :" + commande.Fournisseur.adresse + 
+                frm.TxtFournisseur.Text = "Nom :" + commande.Fournisseur.nom +
+                                          " Adresse :" + commande.Fournisseur.adresse +
                                           " Telephone :" + commande.Fournisseur.telephone;
 
                 //Affichage du montant et de la date
@@ -199,7 +207,7 @@ namespace ProjetSynthese_1._0.Controleurs
             using (var sim = new SIM_Context())
             {
                 //Recuperation de l'objet commande
-                Commande commande=sim.Commandes.Find(numCommande);
+                Commande commande = sim.Commandes.Find(numCommande);
 
                 if (commande != null)
                 {
@@ -230,7 +238,7 @@ namespace ProjetSynthese_1._0.Controleurs
                         }
                     }
 
-                    int result=sim.SaveChanges();
+                    int result = sim.SaveChanges();
                     frm.Session.Remove("numCommande");
                     //Message de confirmation: La réception de la commande a été faite avec succes et les stocks ont été mis à jour!. 
                 }
