@@ -26,7 +26,7 @@ namespace ProjetSynthese_1._0.Controleurs
         {
             int numArticle = int.Parse(frm.TxtNumArticle.Text);
             int quantite = int.Parse(frm.TxtQuantite.Text);
-            double prixVente = double.Parse(frm.TxtPrixVente.Text);
+            float prixVente = float.Parse(frm.TxtPrixVente.Text);
             Utilisateur user = frm.Session["utilisateur"] as Utilisateur;
             Vente vente = frm.Session["vente"] as Vente;
 
@@ -103,29 +103,49 @@ namespace ProjetSynthese_1._0.Controleurs
         //Valider une vente
         public static void ValiderVente(NouvelleVente frm)
         {
-            Utilisateur user = frm.Session["utilisateur"] as Utilisateur;
-            Vente vente = frm.Session["vente"] as Vente;
-
-            using (var sim = new SIM_Context())
+            try
             {
-                foreach (LigneVente l in vente.LigneVentes)
-                {
-                    //Mise à jour de la quantite en stock
-                    //Stock stock = sim.Stocks.Find(new object[] { l.numArticle, user.numFiliale});//Douteux?
-                    Stock stock = (from s in sim.Stocks
-                                   where s.numArticle == l.numArticle &&
-                                   s.numFiliale == user.numFiliale
-                                   select s
-                                   ).Single();
-                    stock.qteEnStock -= l.quantite;
-                }
+                Utilisateur user = frm.Session["utilisateur"] as Utilisateur;
+                Vente vente = frm.Session["vente"] as Vente;
+                string sms = "Commande en urgence pour les articles suivants : ";
+                bool temoinMsg = false;
 
-                vente.dateVente = DateTime.Now;
-                vente = sim.Ventes.Add(vente);
-                int ok = sim.SaveChanges();
-                frm.TxtNumVente.Text = vente.numVente.ToString();
-                frm.TxtDateVente.Text = vente.dateVente.ToShortDateString();
-                //Message: La vente a été éffectuée avec succès
+                using (var sim = new SIM_Context())
+                {
+                    foreach (LigneVente l in vente.LigneVentes)
+                    {
+                        //Mise à jour de la quantite en stock
+                        //Stock stock = sim.Stocks.Find(new object[] { l.numArticle, user.numFiliale});//Douteux?
+                        Stock stock = (from s in sim.Stocks
+                                       where s.numArticle == l.numArticle &&
+                                       s.numFiliale == user.numFiliale
+                                       select s
+                                       ).Single();
+                        stock.qteEnStock -= l.quantite;
+                        if (stock.qteEnStock == stock.qteMoyenneMin)
+                        {
+                            sms +="("+stock.numArticle+","+stock.Article.nom+") ";
+                            temoinMsg = true;
+                        }
+                    }
+
+                    vente.dateVente = DateTime.Now;
+                    vente = sim.Ventes.Add(vente);
+                    int ok = sim.SaveChanges();
+                    frm.TxtNumVente.Text = vente.numVente.ToString();
+                    frm.TxtDateVente.Text = vente.dateVente.ToShortDateString();
+                    
+                    //Notification
+                    if (true)
+                    {
+                        Sms.SendSms("Test");
+                    }
+                    //Message: La vente a été éffectuée avec succès
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 

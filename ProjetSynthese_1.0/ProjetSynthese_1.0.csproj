@@ -236,6 +236,7 @@
     <Compile Include="Modeles\NotificationStockCritique.cs" />
     <Compile Include="Modeles\Paiement.cs" />
     <Compile Include="Modeles\SIM_Context.cs" />
+    <Compile Include="Modeles\Sms.cs" />
     <Compile Include="Modeles\Stock.cs" />
     <Compile Include="Modeles\StockCentral.cs" />
     <Compile Include="Modeles\sysdiagram.cs" />
