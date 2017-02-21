@@ -27,7 +27,7 @@
                 </asp:DropDownList>
             </td>
             <td>
-                <asp:TextBox ID="txtInfoFiliale" runat="server" Enabled="False" CssClass="form-control"></asp:TextBox><br />
+                <asp:TextBox ID="txtInfoFiliale" runat="server" Height="100px" TextMode="MultiLine" Enabled="False" CssClass="form-control"></asp:TextBox><br />
             </td>
             <td></td>
         </tr>
@@ -36,14 +36,7 @@
                 <asp:Label ID="lblDateBonDistribution" runat="server" Text="Date Bon distribution "></asp:Label>
             </td>
             <td>
-                <asp:Calendar ID="calDateBonDistribution" runat="server" Height="190px" Width="350px" BackColor="White" BorderColor="White" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" NextPrevFormat="FullMonth">
-                    <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                    <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                    <OtherMonthDayStyle ForeColor="#999999" />
-                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                    <TitleStyle BackColor="White" BorderColor="Black" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                    <TodayDayStyle BackColor="#CCCCCC" />
-                </asp:Calendar>
+                <input id="Text1" type="text" value="<%= DateTime.Now.ToShortDateString() %>" class="form-control" readonly />
             </td>
             <td></td>
             <td></td>
@@ -94,6 +87,7 @@
             </td>
             <td>
                 <asp:TextBox ID="txtQuantite" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:Label ID="lblResultatTxtQuantite" runat="server" ForeColor="Red"></asp:Label>
             </td>
             <td>
                 <asp:Button ID="btnAjouter" runat="server" Text="Ajouter" OnClick="btnAjouter_Click" Enabled="false" CssClass="btn btn-primary btn-block" />
@@ -109,7 +103,9 @@
         </tr>
         <tr>
             <td></td>
-            <td></td>
+            <td>
+                <asp:Label ID="lblResultatEnregistrer" runat="server" ForeColor="Red"></asp:Label>
+            </td>
             <td>
                 <asp:Button ID="btnEnregistrer" runat="server" Text="Enregistrer" Enabled="false"
                     OnClick="btnEnregistrer_Click" CssClass="btn btn-primary btn-block" />

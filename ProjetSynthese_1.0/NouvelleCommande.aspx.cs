@@ -43,7 +43,6 @@ namespace ProjetSynthese_1._0
         public DropDownList CmbFournisseur { get { return this.cmbFournisseur; } }
         public TextBox TxtInfoFournisseur { get { return this.txtInfoFpurnisseur; } }
         public TextBox TxtMontant { get { return this.txtMontant; } }
-        public Calendar CalDateCommande { get { return this.calDateCommande; } }
 
         public TextBox TxtArticle { get { return this.txtArticle; } }
         public GridView GridArticles { get { return this.gridArticles; } }
@@ -55,16 +54,24 @@ namespace ProjetSynthese_1._0
         public Button BtnRechercher { get { return this.btnRechercher; } }
         public Button BtnEnregistrer { get { return this.btnEnregistrer; } }
         public Button BtnAjouter { get { return this.btnAjouter; } }
+
+        public Label LblResultatTxtQuantite { get { return lblResultatTxtQuantite; } }
+        public Label LblResultatEnregistrer { get { return lblResultatEnregistrer; } }
+
+
+        
         #endregion
 
         protected void btnAjouter_Click(object sender, EventArgs e)
         {
+            RequiredFieldValidatorTxtQuantite.Enabled = false;
             GestionCommande.Ajouter(this);
         }
 
         protected void btnRechercher_Click(object sender, EventArgs e)
         {
             //Lister des articles
+            RequiredFieldValidatorTxtQuantite.Enabled = true;
             GestionArticle.ListerArticles(this);
         }
 

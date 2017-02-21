@@ -157,6 +157,15 @@ namespace ProjetSynthese_1._0 {
         protected global::System.Web.UI.WebControls.TextBox txtQuantite;
         
         /// <summary>
+        /// lblTxtQuantite control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTxtQuantite;
+        
+        /// <summary>
         /// btnAjouter control.
         /// </summary>
         /// <remarks>
@@ -191,6 +200,15 @@ namespace ProjetSynthese_1._0 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMontant;
+        
+        /// <summary>
+        /// lblResultatValiderNouvelVente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResultatValiderNouvelVente;
         
         /// <summary>
         /// btnValider control.

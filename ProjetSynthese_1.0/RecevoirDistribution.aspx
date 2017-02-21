@@ -13,11 +13,11 @@
             </td>
             <td>
                 <asp:TextBox ID="txtNumBondistribution" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:Label ID="lblResultatNumeroBonDistribution" runat="server" Text="" ForeColor="Red"></asp:Label>
             </td>
             <td>
-                <asp:Button ID="btnRechercher" runat="server" Text="Rechercher" OnClick="btnRechercher_Click" CssClass="btn btn-primary btn-block"/>
+                <asp:Button ID="btnRechercher" runat="server" Text="Rechercher" OnClick="btnRechercher_Click" CssClass="btn btn-primary btn-block" />
             </td>
-            <td></td>
         </tr>
         <tr>
             <td>
@@ -26,7 +26,6 @@
             <td>
                 <asp:TextBox ID="txtNomFiliale" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
             </td>
-            <td></td>
             <td></td>
         </tr>
         <tr>
@@ -37,22 +36,21 @@
                 <asp:TextBox ID="txtDateBonDistribution" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
             </td>
             <td></td>
-            <td></td>
         </tr>
         <tr>
-            <td colspan="4">
+            <td colspan="3">
                 <asp:GridView ID="gridBonDistribution" runat="server" CssClass="table Grid"></asp:GridView>
             </td>
         </tr>
         <tr>
+            <td></td>
             <td>
-                <asp:Button ID="btnRecevoir" runat="server" Text="Recevoir" OnClick="btnRecevoir_Click" CssClass="btn btn-primary btn-block"/>
+                <asp:Label ID="lblResultatRecevoirBonDistribution" runat="server" Text="" ForeColor="Red"></asp:Label>
             </td>
             <td>
-                <asp:Button ID="btnImprimer" runat="server" Text="Imprimer" OnClick="btnImprimer_Click" CssClass="btn btn-primary btn-block"/>
+                    <asp:Button ID="btnRecevoir" runat="server" Text="Recevoir" OnClick="btnRecevoir_Click" CssClass="btn btn-primary btn-block" Enabled="false" />
+                    <asp:Button ID="btnImprimer" runat="server" Text="Imprimer" OnClick="btnImprimer_Click" CssClass="btn btn-primary btn-block" Enabled="false"/>
             </td>
-            <td></td>
-            <td></td>
         </tr>
     </table>
 </asp:Content>
