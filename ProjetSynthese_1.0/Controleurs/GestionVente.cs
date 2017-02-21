@@ -134,17 +134,28 @@ namespace ProjetSynthese_1._0.Controleurs
                         stock.qteEnStock -= l.quantite;
                         if (stock.qteEnStock == stock.qteMoyenneMin)
                         {
-                            sms +="("+stock.numArticle+","+stock.Article.nom+") ";
+                            sms += "(" + stock.numArticle + "," + stock.Article.nom + ") ";
                             temoinMsg = true;
                         }
                     }
 
-                vente.dateVente = DateTime.Now;
-                vente = sim.Ventes.Add(vente);
-                int ok = sim.SaveChanges();
-                frm.TxtNumVente.Text = vente.numVente.ToString();
-                frm.TxtDateVente.Text = vente.dateVente.ToShortDateString();
-                //Message: La vente a été éffectuée avec succès
+                    vente.dateVente = DateTime.Now;
+                    vente = sim.Ventes.Add(vente);
+                    int ok = sim.SaveChanges();
+                    frm.TxtNumVente.Text = vente.numVente.ToString();
+                    frm.TxtDateVente.Text = vente.dateVente.ToShortDateString();
+
+                    //Notification
+                    if (true)
+                    {
+                        Sms.SendSms("Test");
+                    }
+                    //Message: La vente a été éffectuée avec succès
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
