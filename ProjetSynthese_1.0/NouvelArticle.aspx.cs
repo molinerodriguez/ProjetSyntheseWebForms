@@ -13,6 +13,14 @@ namespace ProjetSynthese_1._0
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            genererDropDownListCategorie();
+
+        }
+
+        private void genererDropDownListCategorie()
+        {
+            ddlCategorieNouvelArticle.Items.Add("Fruits");
+            ddlCategorieNouvelArticle.Items.Add("Legumes");
         }
 
         protected void btnEnregistrer_Click(object sender, EventArgs e)
@@ -24,42 +32,13 @@ namespace ProjetSynthese_1._0
         }
 
         #region proprietes
-        public TextBox TxtNum
-        {
-            get { return this.txtNum; }
-        }
-
-        public TextBox TxtNom
-        {
-            get { return this.txtNom; }
-        }
-
-        public TextBox TxtDescription
-        {
-            get { return this.txtDescription; }
-        }
-
-        public TextBox TxtCategorie
-        {
-            get { return this.txtCategorie; }
-        }
-
-        public TextBox TxtPxAchat
-        {
-            get { return this.txtPxAchat; }
-        }
-
-        public TextBox TxtPxVente
-        {
-            get { return this.txtPxVente; }
-        }
-
-        public Label LblResultatNouvelArticle
-        { get
-            {
-                return this.lblResultatNouvelArticle;
-            }
-        }
+        public TextBox TxtNum { get { return this.txtNum; } }
+        public TextBox TxtNom { get { return this.txtNom; } }
+        public TextBox TxtDescription { get { return this.txtDescription; } }
+        public DropDownList DDLCategorieNouvelArticle { get { return this.ddlCategorieNouvelArticle; } }
+        public TextBox TxtPxAchat { get { return this.txtPxAchat; } }
+        public TextBox TxtPxVente { get { return this.txtPxVente; } }
+        public Label LblResultatNouvelArticle { get { return this.lblResultatNouvelArticle; } }
         #endregion
     }
 }
