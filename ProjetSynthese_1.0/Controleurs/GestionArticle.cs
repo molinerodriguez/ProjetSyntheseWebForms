@@ -147,12 +147,19 @@ namespace ProjetSynthese_1._0.Controleurs
                 if ((frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text)) != null)
                 {
                     frm.GridArticles.DataBind();
+                } else
+                {
+                    frm.LblResultatRechercherArticle.Text = "Rien trouvé...";
                 }
+            } else
+            {
+                frm.LblResultatRechercherArticle.Text = "Le champ est vide";
             }
             frm.LblResultatTxtQuantite.Text = "";
             frm.TxtQuantite.Text = "";
             frm.TxtNom.Text = "";
             frm.TxtNumArticle.Text = "";
+            frm.LblResultatRechercherArticle.Text = "";
         }
 
         //Lister articles dans la fenetre vente
