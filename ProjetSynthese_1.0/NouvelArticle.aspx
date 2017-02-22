@@ -33,7 +33,7 @@
             </td>
             <td>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                    ErrorMessage="Champ obligatoire" ControlToValidate="txtDescrip  tion" ForeColor="Red"></asp:RequiredFieldValidator>
+                    ErrorMessage="Champ obligatoire" ControlToValidate="txtDescription" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
 
         </tr>

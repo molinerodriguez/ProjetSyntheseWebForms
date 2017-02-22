@@ -26,6 +26,10 @@ namespace ProjetSynthese_1._0
 
         public Label LblResultatTxtQuantite { get { return this.lblResultatTxtQuantite; } }
         public Label LblResultatEnregistrer { get { return this.lblResultatEnregistrer; } }
+        public Label LblResultatRechercherArticle { get { return this.lblResultatRechercherArticle; } }
+
+
+        
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
