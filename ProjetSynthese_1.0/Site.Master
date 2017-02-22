@@ -86,7 +86,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Projet de synthèse [Rodriguez Molin && Dan-Ghenadie Roman]</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Projet de synthèse [Rodriguez Moline && Dan-Ghenadie Roman]</p>
             </footer>
         </div>
 

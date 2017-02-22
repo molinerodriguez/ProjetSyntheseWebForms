@@ -93,16 +93,48 @@ namespace ProjetSynthese_1._0.Controleurs
             return article;
         }
 
-        //Rechercher un article par nom
-        private static List<Article> Rechercher(string nom)
+        //Rechercher un article par nom  (enStock=true: Article en stock / enStock=false: Article simplement enregistré)
+        private static List<Object> Rechercher(string nom, bool enStock)
         {
-            List<Article> listArticle = null;
+            List<Object> listArticle = null;
             using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
             {
-                IEnumerable<Article> result = from a in sim.Articles
-                                              where a.nom.ToUpper().StartsWith(nom.ToUpper())
-                                              select a;
-                if (result.Count() > 0)
+                IEnumerable<Object> result=null;
+
+                if (!enStock)
+                {
+                    result = from a in sim.Articles
+                             where a.nom.ToUpper().StartsWith(nom.ToUpper())
+                             select new
+                             {
+                                 NumArticle = a.numArticle,
+                                 NomArticle = a.nom,
+                                 Description = a.description,
+                                 Categorie = a.categorie,
+                                 PrixAchat = a.prixAchat,
+                                 PrixVente = a.prixVente,
+                                 QteEnStock = a.StockCentral.qte
+                             };
+                }
+                else
+                {
+                    result = from a in sim.Articles
+                             where a.nom.ToUpper().StartsWith(nom.ToUpper())
+                             && a.StockCentral.Article != null
+                             select new
+                             {
+                                 NumArticle=a.numArticle,
+                                 NomArticle=a.nom,
+                                 Description=a.description,
+                                 Categorie=a.categorie,
+                                 PrixAchat=a.prixAchat,
+                                 PrixVente=a.prixVente,
+                                 QteEnStock=a.StockCentral.qte
+                             };
+                }
+                
+
+                if (result!=null && result.Count() > 0)
                 {
                     listArticle = result.ToList();
                 }
@@ -117,7 +149,7 @@ namespace ProjetSynthese_1._0.Controleurs
         {
             if (!frmArticle.TxtNom.Text.Equals(""))
             {
-                frmArticle.GridArticles.DataSource = Rechercher(frmArticle.TxtNom.Text);
+                frmArticle.GridArticles.DataSource = Rechercher(frmArticle.TxtNom.Text,false);
                 frmArticle.GridArticles.DataBind();
             }
         }
@@ -127,7 +159,7 @@ namespace ProjetSynthese_1._0.Controleurs
         {
             if (!frm.TxtArticle.Text.Equals(""))
             {
-                if ((frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text)) != null)
+                if ((frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text,false)) != null)
                 {
                     frm.GridArticles.DataBind();
                     frm.BtnAjouter.Enabled = true;
@@ -144,7 +176,7 @@ namespace ProjetSynthese_1._0.Controleurs
         {
             if (!frm.TxtArticle.Text.Equals(""))
             {
-                if ((frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text)) != null)
+                if ((frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text,true)) != null)
                 {
                     frm.GridArticles.DataBind();
                 } else
