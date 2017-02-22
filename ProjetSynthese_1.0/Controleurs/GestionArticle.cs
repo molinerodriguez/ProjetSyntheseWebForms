@@ -146,10 +146,15 @@ namespace ProjetSynthese_1._0.Controleurs
                     frm.BtnAjouter.Enabled = true;
                     frm.LblResultatRechercherArticle.Text = "";
                 }
+                else
+                {
+                    frm.LblResultatRechercherArticle.Text = "Rien trouvé!";
+
+                }
             }
             else
             {
-                frm.LblResultatRechercherArticle.Text = "Rien trouvé";
+                frm.LblResultatRechercherArticle.Text = "Champ vide!";
             }
         }
 

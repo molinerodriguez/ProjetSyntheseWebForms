@@ -60,7 +60,7 @@ namespace ProjetSynthese_1._0.Controleurs
             }
             catch (Exception e)
             {
-                frm.LblResultatTxtQuantite.Text = "En nombre seulement";
+                frm.LblResultatTxtQuantite.Text = "Champ obligatoire en nombre";
             }
 
         }
