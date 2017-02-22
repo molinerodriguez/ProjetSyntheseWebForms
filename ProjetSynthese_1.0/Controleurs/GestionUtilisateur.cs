@@ -135,7 +135,7 @@ namespace ProjetSynthese_1._0.Controleurs
                     menu.Items[4].ChildItems[0].NavigateUrl = "~/StockBureaucentral.aspx";
 
                     menu.Items[4].ChildItems.Add(new MenuItem("Etat de stock des Annexes"));
-                    menu.Items[4].ChildItems[1].NavigateUrl = "~/StockFiliales.aspx";
+                    menu.Items[4].ChildItems[1].NavigateUrl = "#";
                     #endregion
                 }
                 if (user.type == "caissier")

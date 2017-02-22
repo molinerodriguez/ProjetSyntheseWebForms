@@ -8,7 +8,7 @@
     <table class="table">
         <tr>
             <td>
-                <asp:Label ID="lblNum" runat="server" Text="Numero Bon Distribution "></asp:Label>
+                <asp:Label ID="lblNum" runat="server" Text="Numéro Bon Distribution "></asp:Label>
             </td>
             <td>
                 <asp:TextBox ID="txtNumBonDistribution" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
@@ -63,7 +63,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblNumArticle" runat="server" Text="Numero "></asp:Label>
+                <asp:Label ID="lblNumArticle" runat="server" Text="Numéro "></asp:Label>
             </td>
             <td>
                 <asp:TextBox ID="txtNumArticle" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
@@ -83,7 +83,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblQuantite" runat="server" Text="Quantite "></asp:Label>
+                <asp:Label ID="lblQuantite" runat="server" Text="Quantité"></asp:Label>
             </td>
             <td>
                 <asp:TextBox ID="txtQuantite" runat="server" CssClass="form-control"></asp:TextBox>

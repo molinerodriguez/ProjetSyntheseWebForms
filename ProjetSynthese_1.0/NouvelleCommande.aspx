@@ -9,7 +9,7 @@
     <table class="table table-responsive">
         <tr>
             <td>
-                <asp:Label ID="lblNum" runat="server" Text="Numero Commande "></asp:Label>
+                <asp:Label ID="lblNum" runat="server" Text="Numéro commande "></asp:Label>
             </td>
             <td>
                 <asp:TextBox ID="txtNumCommande" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
@@ -63,7 +63,7 @@
 
         <tr>
             <td>
-                <asp:Label ID="lblNumArticle" runat="server" Text="Numero "></asp:Label>
+                <asp:Label ID="lblNumArticle" runat="server" Text="Numéro "></asp:Label>
             </td>
             <td>
                 <asp:TextBox ID="txtNum" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
@@ -90,10 +90,10 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblQuantite" runat="server" Text="Quantite"></asp:Label>
+                <asp:Label ID="lblQuantite" runat="server" Text="Quantité"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="txtQuantite" runat="server" Text="0" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtQuantite" runat="server" CssClass="form-control"></asp:TextBox>
 
                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorTxtQuantite" runat="server"
                     ErrorMessage="Champ obligatoire" ForeColor="Red" ControlToValidate="txtQuantite" Enabled="false">

@@ -52,10 +52,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
-                        <%--<asp:Menu ID="menuPrincipale" runat="server" Orientation="Horizontal">
-                        </asp:Menu>--%>
-
-
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
                                 aria-expanded="false">
@@ -73,11 +69,11 @@
 
                     </div>
                     <div class="col-md-2 text-info">
-                        <asp:Button ID="btnUtilisateur" runat="server" Text="Se connecter" CssClass="btn btn-group-justified" 
+                        <asp:Button ID="btnUtilisateur" runat="server" Text="Se connecter" CssClass="btn btn-primary" 
                             OnClick="btnUtilisateur_Click" />
                     </div>
                     <div class="col-md-2 text-info">
-                        <asp:Button ID="btnDeconnexion" runat="server" Text="Déconécté" CssClass="btn btn-default" 
+                        <asp:Button ID="btnDeconnexion" runat="server" Text="Déconécté" CssClass="btn btn-primary" 
                             OnClick="btnDeconnexion_Click" Visible="false" />
                     </div>
                 </div>

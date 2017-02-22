@@ -21,7 +21,7 @@ namespace ProjetSynthese_1._0.Controleurs
             if (Rechercher(description: description.Text, nom: nom.Text) == null)
             {
                 //TextBox categorie = frmArticle.FindControl("txtCategorie") as TextBox;
-                TextBox categorie = frmArticle.TxtCategorie;
+                DropDownList categorie = frmArticle.DDLCategorieNouvelArticle;
                 //TextBox pxAchat = frmArticle.FindControl("txtPxAchat") as TextBox;
                 TextBox pxAchat = frmArticle.TxtPxAchat;
                 //TextBox pxVente = frmArticle.FindControl("txtPxVente") as TextBox;
@@ -35,7 +35,7 @@ namespace ProjetSynthese_1._0.Controleurs
                         {
                             nom = nom.Text,
                             description = description.Text,
-                            categorie = categorie.Text,
+                            categorie = categorie.SelectedValue.ToString(),
                             prixAchat = double.Parse(pxAchat.Text),
                             prixVente = double.Parse(pxVente.Text)
                         });

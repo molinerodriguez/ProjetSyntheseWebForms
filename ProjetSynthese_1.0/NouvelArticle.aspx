@@ -42,12 +42,10 @@
                 <asp:Label ID="lblCategorie" runat="server" Text="Categorie "></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="txtCategorie" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:DropDownList ID="ddlCategorieNouvelArticle" runat="server" CssClass="form-control"></asp:DropDownList>
             </td>
+
             <td>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-                    ErrorMessage="Champ obligatoire" ControlToValidate="txtCategorie" ForeColor="Red">
-                </asp:RequiredFieldValidator>
             </td>
 
         </tr>
