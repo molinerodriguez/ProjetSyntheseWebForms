@@ -36,6 +36,7 @@ namespace ProjetSynthese_1._0
         {
             //Afficher un article
             GestionArticle.Afficher(this);
+            this.btnAjouter.Enabled = true;
         }
 
         #region proprietes
@@ -76,6 +77,7 @@ namespace ProjetSynthese_1._0
             //Lister des articles
             //RequiredFieldValidatorTxtQuantite.Enabled = true;
             GestionArticle.ListerArticles(this);
+            this.btnAjouter.Enabled = false;
         }
 
         protected void gridViewCommande_RowDeleting(object sender, GridViewDeleteEventArgs e)
