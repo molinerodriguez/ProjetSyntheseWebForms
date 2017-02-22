@@ -47,6 +47,7 @@
             </td>
             <td>
                 <asp:TextBox ID="txtArticle" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:Label ID="lblResultatRechercherArticle" runat="server" Text="" ForeColor="Red"></asp:Label>
             </td>
             <td>
                 <asp:Button ID="btnRechercher" runat="server" Text="Rechercher"

@@ -57,9 +57,12 @@ namespace ProjetSynthese_1._0
 
         public Label LblResultatTxtQuantite { get { return lblResultatTxtQuantite; } }
         public Label LblResultatEnregistrer { get { return lblResultatEnregistrer; } }
-
+        public Label LblResultatRechercherArticle { get { return lblResultatRechercherArticle; } }
 
         
+
+
+
         #endregion
 
         protected void btnAjouter_Click(object sender, EventArgs e)

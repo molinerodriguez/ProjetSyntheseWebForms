@@ -121,29 +121,37 @@ namespace ProjetSynthese_1._0.Controleurs
             //Completion de l'objet commande
             cmd.numFournisseur = fournisseur.numFournisseur;
             cmd.dateCommande = DateTime.Now;
-            cmd.nomUtilisateur = utilisateur.nomUtilisateur;
+            try
+            {
+                cmd.nomUtilisateur = utilisateur.nomUtilisateur;
+
+                using (var sim = new SIM_Context())
+                {
+                    //Sauvegarde de la commande
+                    cmd = sim.Commandes.Add(cmd);
+                    int result = sim.SaveChanges();
+
+                    //Affichage numero commande
+                    frm.TxtNumCommande.Text = cmd.numCommande.ToString();
+
+                    //Mise à jour du grid
+                    frm.GridViewCommande.DataSource = cmd.LigneCommandes;
+                    frm.GridViewCommande.DataBind();
+
+                    frm.BtnEnregistrer.Enabled = false;
+                    frm.Session.Remove("commande");
+                    frm.LblResultatEnregistrer.Text = "Nouvelle commande enregistré avec succes!";
+                    //Message de confirmation : La commande a été sauvegardée avec succes
+                }
+            }
+            catch (Exception)
+            {
+                frm.LblResultatEnregistrer.Text = "Vous êtes pas authentifié";
+                
+            }
             //cmd.Fournisseur = fournisseur;
 
-            using (var sim = new SIM_Context())
-            {
-                //Sauvegarde de la commande
-                cmd = sim.Commandes.Add(cmd);
-                int result = sim.SaveChanges();
-
-                //Affichage numero commande
-                frm.TxtNumCommande.Text = cmd.numCommande.ToString();
-
-                //Mise à jour du grid
-                frm.GridViewCommande.DataSource = cmd.LigneCommandes;
-                frm.GridViewCommande.DataBind();
-
-                frm.BtnEnregistrer.Enabled = false;
-                frm.Session.Remove("commande");
-                frm.LblResultatEnregistrer.Text = "Nouvelle commande enregistré avec succes!";
-                //Message de confirmation : La commande a été sauvegardée avec succes
-            }
-
-        }
+        }   
 
         //Rechercher une commande
         public static Commande RechercherCommande(int numCommande)
