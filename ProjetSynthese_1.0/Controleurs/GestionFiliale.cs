@@ -23,7 +23,8 @@ namespace ProjetSynthese_1._0.Controleurs
             using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
             {
                 listeFiliale = (from f in sim.Filiales
-                                    select f
+                                where f.type!="Central"
+                                select f
                  ).ToList();
             }
             return listeFiliale;
