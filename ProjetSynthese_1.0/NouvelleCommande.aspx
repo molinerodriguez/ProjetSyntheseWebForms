@@ -95,9 +95,9 @@
             <td>
                 <asp:TextBox ID="txtQuantite" runat="server" CssClass="form-control"></asp:TextBox>
 
-                <asp:RequiredFieldValidator ID="RequiredFieldValidatorTxtQuantite" runat="server"
+<%--                <asp:RequiredFieldValidator ID="RequiredFieldValidatorTxtQuantite" runat="server"
                     ErrorMessage="Champ obligatoire" ForeColor="Red" ControlToValidate="txtQuantite" Enabled="false">
-                </asp:RequiredFieldValidator>
+                </asp:RequiredFieldValidator>--%>
                 <asp:Label ID="lblResultatTxtQuantite" runat="server" Text="" ForeColor="Red"></asp:Label>
 
 

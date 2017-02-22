@@ -24,19 +24,26 @@ namespace ProjetSynthese_1._0
         //public GridView GridArticlesCommande { get { return this.gridArticlesCommande; } }
         public Button BtnRecevoir { get { return this.btnRecevoir; } }
         public Button BtnImprimer { get { return this.btnImprimer; } }
-        public Label LblResultatRecevoir { get { return this.lblResultatRecevoir; } }
+        public Button BtnRechercher { get { return this.btnRechercher; } }
 
+        public Label LblResultatRecevoir { get { return this.lblResultatRecevoir; } }
+        public Label LblResultatNumeroCommande { get { return this.lblResultatNumeroCommande; } }
 
         
+
+
+
         #endregion
 
         protected void btnRecevoir_Click(object sender, EventArgs e)
         {
+
             GestionCommande.RecevoirCommande(this);
         }
 
         protected void btnRechercher_Click(object sender, EventArgs e)
         {
+
             GestionCommande.RechercherCommande(this);
         }
     }

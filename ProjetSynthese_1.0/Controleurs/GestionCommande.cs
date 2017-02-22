@@ -166,88 +166,106 @@ namespace ProjetSynthese_1._0.Controleurs
         //Rechercher et afficher une commande
         public static void RechercherCommande(RecevoirCommande frm)
         {
-            //Numero de la commande à rechercher
-            int numCommande = int.Parse(frm.TxtNumeroCommande.Text);
-
-            Commande commande = RechercherCommande(numCommande);
-
-            if (commande != null)
+            try
             {
-                //Sauvegarde temporaire du num de la commande
-                frm.Session["numCommande"] = commande.numCommande;
+                //Numero de la commande à rechercher
+                int numCommande = int.Parse(frm.TxtNumeroCommande.Text);
 
-                //Affichage du fournisseur
-                frm.TxtFournisseur.Text = "Nom :" + commande.Fournisseur.nom +
-                                          " Adresse :" + commande.Fournisseur.adresse +
-                                          " Telephone :" + commande.Fournisseur.telephone;
+                Commande commande = RechercherCommande(numCommande);
 
-                //Affichage du montant et de la date
-                frm.TxtMontant.Text = commande.montant.ToString();
-                frm.TxtDate.Text = commande.dateCommande.ToShortDateString();
+                if (commande != null)
+                {
+                    //Sauvegarde temporaire du num de la commande
+                    frm.Session["numCommande"] = commande.numCommande;
 
-                //Affichage des lignes de commande
-                frm.GridLignesCommande.DataSource = commande.LigneCommandes;
-                frm.GridLignesCommande.DataBind();
+                    //Affichage du fournisseur
+                    frm.TxtFournisseur.Text = "Nom :" + commande.Fournisseur.nom +
+                                              " Adresse :" + commande.Fournisseur.adresse +
+                                              " Telephone :" + commande.Fournisseur.telephone;
 
-                //Activation des boutons
-                frm.BtnRecevoir.Enabled = true;
-                frm.BtnImprimer.Enabled = true;
+                    //Affichage du montant et de la date
+                    frm.TxtMontant.Text = commande.montant.ToString();
+                    frm.TxtDate.Text = commande.dateCommande.ToShortDateString();
+
+                    //Affichage des lignes de commande
+                    frm.GridLignesCommande.DataSource = commande.LigneCommandes;
+                    frm.GridLignesCommande.DataBind();
+
+                    //Activation des boutons
+                    frm.BtnRecevoir.Enabled = true;
+                    frm.BtnImprimer.Enabled = true;
+                    frm.BtnRechercher.Enabled = false;
+                    frm.TxtNumeroCommande.Enabled = false;
+
+                    frm.LblResultatNumeroCommande.Text = "";
+
+                }
+                else
+                {
+                    frm.LblResultatNumeroCommande.Text = "La commande n'existe pas";
+                }
             }
-            else
+            catch (Exception)
             {
-                //Message : Cette commande n'existe pas!
+
+                frm.LblResultatNumeroCommande.Text = "Champ obligatoire et en numérique. Merci";
+
             }
         }
 
         //Recevoir une commande
         public static void RecevoirCommande(RecevoirCommande frm)
         {
-            //Recuperation du numero de commande
-            int numCommande = int.Parse(frm.Session["numCommande"].ToString());
-
-            using (var sim = new SIM_Context())
+            try
             {
-                //Recuperation de l'objet commande
-                Commande commande = sim.Commandes.Find(numCommande);
+                //Recuperation du numero de commande
+                int numCommande = int.Parse(frm.Session["numCommande"].ToString());
 
-                if (commande != null)
+                using (var sim = new SIM_Context())
                 {
-                    foreach (LigneCommande l in commande.LigneCommandes)
+                    //Recuperation de l'objet commande
+                    Commande commande = sim.Commandes.Find(numCommande);
+
+                    if (commande != null)
                     {
-                        //Selectionner l'article
-                        Article article = l.Article;
-
-                        //Selectionner le StockCentral lié à l'article
-                        StockCentral stockCentral = sim.StockCentrals.Find(article.numArticle);
-
-                        if (stockCentral != null)//L'article est deja en stock
+                        foreach (LigneCommande l in commande.LigneCommandes)
                         {
-                            //Mise à jour de la quantite en stock
-                            stockCentral.qte += l.quantite;
+                            //Selectionner l'article
+                            Article article = l.Article;
+
+                            //Selectionner le StockCentral lié à l'article
+                            StockCentral stockCentral = sim.StockCentrals.Find(article.numArticle);
+
+                            if (stockCentral != null)//L'article est deja en stock
+                            {
+                                //Mise à jour de la quantite en stock
+                                stockCentral.qte += l.quantite;
+                            }
+                            else
+                            {
+                                //Premiere commande pour cet article
+                                sim.StockCentrals.Add(
+                                    new StockCentral
+                                    {
+                                        numArticle = article.numArticle,
+                                        qte = l.quantite,
+                                        qteCritique = 0
+                                    }
+                                    );
+                            }
                         }
-                        else
-                        {
-                            //Premiere commande pour cet article
-                            sim.StockCentrals.Add(
-                                new StockCentral
-                                {
-                                    numArticle = article.numArticle,
-                                    qte = l.quantite,
-                                    qteCritique = 0
-                                }
-                                );
-                        }
+                        int result = sim.SaveChanges();
+                        frm.Session.Remove("numCommande");
+                        frm.LblResultatNumeroCommande.Text = "";
+                        frm.LblResultatRecevoir.Text = "La commande a été reçu avec succes!";
+                        frm.BtnRecevoir.Enabled = false;
+                        frm.BtnImprimer.Enabled = false;
                     }
-
-                    int result = sim.SaveChanges();
-                    frm.Session.Remove("numCommande");
-                    frm.LblResultatRecevoir.Text = "La commande a été reçu avec succes!";
-                    frm.BtnRecevoir.Enabled = false;
-                    frm.BtnImprimer.Enabled = false;
-
-                    //Message de confirmation: La réception de la commande a été faite avec succes et les stocks ont été mis à jour!. 
                 }
-
+            }
+            catch (Exception)
+            {
+                frm.LblResultatRecevoir.Text = "Le numéro de la commande invalide";
             }
         }
     }

@@ -19,8 +19,8 @@ namespace ProjetSynthese_1._0
 
         private void genererDropDownListCategorie()
         {
-            ddlCategorieNouvelArticle.Items.Add("Fruits");
-            ddlCategorieNouvelArticle.Items.Add("Legumes");
+            ddlCategorieNouvelArticle.Items.Add("Fruit");
+            ddlCategorieNouvelArticle.Items.Add("Legume");
         }
 
         protected void btnEnregistrer_Click(object sender, EventArgs e)

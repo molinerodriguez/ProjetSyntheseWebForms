@@ -11,9 +11,9 @@
             </td>
             <td>
                 <asp:TextBox ID="txtNumeroCommande" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:Label ID="lblResultatNumeroCommande" runat="server" Text="" ForeColor="Red"></asp:Label>
             </td>
-            <td>
-            </td>
+            <td></td>
             <td>
                 <asp:Button CssClass="btn btn-primary btn-block" ID="btnRechercher" runat="server" Text="Rechercher" OnClick="btnRechercher_Click" />
             </td>
@@ -24,7 +24,7 @@
             </td>
             <td>
                 <asp:TextBox ID="txtFournisseur" runat="server" Enabled="false"
-                    Height="83px" TextMode="MultiLine" Width="693px" CssClass="form-control"></asp:TextBox>
+                    Height="100px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
             </td>
             <td></td>
             <td></td>
@@ -51,10 +51,10 @@
             </td>
         </tr>
         <tr>
+            <td></td>
             <td>
                 <asp:Label ID="lblResultatRecevoir" runat="server" Text="" ForeColor="Red"></asp:Label>
             </td>
-            <td></td>
             <td></td>
             <td>
                 <asp:Button CssClass="btn btn-primary btn-block" ID="btnRecevoir" runat="server" Text="Recevoir" Enabled="false" OnClick="btnRecevoir_Click" />

@@ -64,14 +64,14 @@ namespace ProjetSynthese_1._0
 
         protected void btnAjouter_Click(object sender, EventArgs e)
         {
-            RequiredFieldValidatorTxtQuantite.Enabled = false;
+            //RequiredFieldValidatorTxtQuantite.Enabled = false;
             GestionCommande.Ajouter(this);
         }
 
         protected void btnRechercher_Click(object sender, EventArgs e)
         {
             //Lister des articles
-            RequiredFieldValidatorTxtQuantite.Enabled = true;
+            //RequiredFieldValidatorTxtQuantite.Enabled = true;
             GestionArticle.ListerArticles(this);
         }
 
