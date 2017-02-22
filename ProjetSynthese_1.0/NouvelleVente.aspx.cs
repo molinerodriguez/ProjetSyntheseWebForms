@@ -62,6 +62,10 @@ namespace ProjetSynthese_1._0
         protected void btnValider_Click(object sender, EventArgs e)
         {
             GestionVente.ValiderVente(this);
+            this.BtnValider.Enabled = false;
+            this.BtnAjouter.Enabled = false;
+            this.BtnRechercher.Enabled = false;
+
         }
     }
 }

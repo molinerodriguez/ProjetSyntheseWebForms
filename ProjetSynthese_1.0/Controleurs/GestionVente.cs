@@ -151,11 +151,12 @@ namespace ProjetSynthese_1._0.Controleurs
                         Sms.SendSms(sms);
                     }
                     //Message: La vente a été éffectuée avec succès
+                    frm.LblResultatValiderNouvelVente.Text = "La vente a été éffectuée avec succès";
                 }
             }
             catch (Exception ex)
             {
-
+                frm.LblResultatValiderNouvelVente.Text = "Erreur dans le formulaire de vente. SVP appeler le support techniques";
             }
         }
 

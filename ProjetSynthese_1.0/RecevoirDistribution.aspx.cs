@@ -105,6 +105,11 @@ namespace ProjetSynthese_1._0
                         this.GridBonDistribution.DataBind();
 
                     }
+                    else
+                    {
+                        lblResultatNumeroBonDistribution.Text = "Bon de distribution n'existe pas";
+                        return;
+                    }
                     lblResultatNumeroBonDistribution.Text = "";
                     BtnRecevoir.Enabled = true;
                     BtnImprimer.Enabled = true;
