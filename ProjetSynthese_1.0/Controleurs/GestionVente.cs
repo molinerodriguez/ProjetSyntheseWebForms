@@ -146,9 +146,9 @@ namespace ProjetSynthese_1._0.Controleurs
                     frm.TxtDateVente.Text = vente.dateVente.ToShortDateString();
 
                     //Notification
-                    if (true)
+                    if (temoinMsg)
                     {
-                        Sms.SendSms("Test");
+                        Sms.SendSms(sms);
                     }
                     //Message: La vente a été éffectuée avec succès
                 }
