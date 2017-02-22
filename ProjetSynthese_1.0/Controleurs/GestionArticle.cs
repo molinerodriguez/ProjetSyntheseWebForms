@@ -94,47 +94,28 @@ namespace ProjetSynthese_1._0.Controleurs
         }
 
         //Rechercher un article par nom  (enStock=true: Article en stock / enStock=false: Article simplement enregistré)
-        private static List<Object> Rechercher(string nom, bool enStock)
+        private static List<Article> Rechercher(string nom, bool enStock)
         {
-            List<Object> listArticle = null;
+            List<Article> listArticle = null;
             using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
             {
-                IEnumerable<Object> result=null;
+                IEnumerable<Article> result=null;
 
                 if (!enStock)
                 {
                     result = from a in sim.Articles
                              where a.nom.ToUpper().StartsWith(nom.ToUpper())
-                             select new
-                             {
-                                 NumArticle = a.numArticle,
-                                 NomArticle = a.nom,
-                                 Description = a.description,
-                                 Categorie = a.categorie,
-                                 PrixAchat = a.prixAchat,
-                                 PrixVente = a.prixVente,
-                                 QteEnStock = a.StockCentral.qte
-                             };
+                             select a;
                 }
                 else
                 {
                     result = from a in sim.Articles
                              where a.nom.ToUpper().StartsWith(nom.ToUpper())
                              && a.StockCentral.Article != null
-                             select new
-                             {
-                                 NumArticle=a.numArticle,
-                                 NomArticle=a.nom,
-                                 Description=a.description,
-                                 Categorie=a.categorie,
-                                 PrixAchat=a.prixAchat,
-                                 PrixVente=a.prixVente,
-                                 QteEnStock=a.StockCentral.qte
-                             };
+                             select a;
                 }
                 
-
-                if (result!=null && result.Count() > 0)
+                if (result != null && result.Count()>0)
                 {
                     listArticle = result.ToList();
                 }
