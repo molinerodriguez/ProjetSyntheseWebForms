@@ -31,6 +31,15 @@ namespace ProjetSynthese_1._0 {
         protected global::System.Web.UI.WebControls.TextBox txtNumeroCommande;
         
         /// <summary>
+        /// lblResultatNumeroCommande control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResultatNumeroCommande;
+        
+        /// <summary>
         /// btnRechercher control.
         /// </summary>
         /// <remarks>

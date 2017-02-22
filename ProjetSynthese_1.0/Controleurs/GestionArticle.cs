@@ -163,7 +163,11 @@ namespace ProjetSynthese_1._0.Controleurs
                 {
                     frm.GridArticles.DataBind();
                     frm.BtnAjouter.Enabled = true;
+                    frm.LblResultatRechercherArticle.Text = "";
                 }
+            } else
+            {
+                frm.LblResultatRechercherArticle.Text = "Rien trouvé";
             }
         }
 

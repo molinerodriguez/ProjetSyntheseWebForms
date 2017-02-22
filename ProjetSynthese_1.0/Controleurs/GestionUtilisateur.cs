@@ -33,7 +33,7 @@ namespace ProjetSynthese_1._0.Controleurs
             }
             catch (Exception ex)
             {
-                (log.FindControl("lblResultatLogin") as Label).Text = "Erreure: <br>" + ex;
+                (log.FindControl("lblResultatLogin") as Label).Text = "Erreure BD: <br>";
 
             }
 
