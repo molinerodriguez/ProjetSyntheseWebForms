@@ -99,7 +99,7 @@ namespace ProjetSynthese_1._0.Controleurs
             List<Object> listArticle = null;
             using (var sim = new SIM_Context() /*SIM_Context.getInstance()*/)
             {
-                IEnumerable<Object> result=null;
+                IEnumerable<Object> result = null;
 
                 if (!enStock)
                 {
@@ -123,18 +123,18 @@ namespace ProjetSynthese_1._0.Controleurs
                              && a.StockCentral.Article != null
                              select new
                              {
-                                 NumArticle=a.numArticle,
-                                 NomArticle=a.nom,
-                                 Description=a.description,
-                                 Categorie=a.categorie,
-                                 PrixAchat=a.prixAchat,
-                                 PrixVente=a.prixVente,
-                                 QteEnStock=a.StockCentral.qte
+                                 NumArticle = a.numArticle,
+                                 NomArticle = a.nom,
+                                 Description = a.description,
+                                 Categorie = a.categorie,
+                                 PrixAchat = a.prixAchat,
+                                 PrixVente = a.prixVente,
+                                 QteEnStock = a.StockCentral.qte
                              };
                 }
-                
 
-                if (result!=null && result.Count() > 0)
+
+                if (result != null && result.Count() > 0)
                 {
                     listArticle = result.ToList();
                 }
@@ -149,7 +149,7 @@ namespace ProjetSynthese_1._0.Controleurs
         {
             if (!frmArticle.TxtNom.Text.Equals(""))
             {
-                frmArticle.GridArticles.DataSource = Rechercher(frmArticle.TxtNom.Text,false);
+                frmArticle.GridArticles.DataSource = Rechercher(frmArticle.TxtNom.Text, false);
                 frmArticle.GridArticles.DataBind();
             }
         }
@@ -159,13 +159,14 @@ namespace ProjetSynthese_1._0.Controleurs
         {
             if (!frm.TxtArticle.Text.Equals(""))
             {
-                if ((frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text,false)) != null)
+                if ((frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text, false)) != null)
                 {
                     frm.GridArticles.DataBind();
                     frm.BtnAjouter.Enabled = true;
                     frm.LblResultatRechercherArticle.Text = "";
                 }
-            } else
+            }
+            else
             {
                 frm.LblResultatRechercherArticle.Text = "Rien trouvé";
             }
@@ -176,14 +177,16 @@ namespace ProjetSynthese_1._0.Controleurs
         {
             if (!frm.TxtArticle.Text.Equals(""))
             {
-                if ((frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text,true)) != null)
+                if ((frm.GridArticles.DataSource = Rechercher(frm.TxtArticle.Text, true)) != null)
                 {
                     frm.GridArticles.DataBind();
-                } else
+                }
+                else
                 {
                     frm.LblResultatRechercherArticle.Text = "Rien trouvé...";
                 }
-            } else
+            }
+            else
             {
                 frm.LblResultatRechercherArticle.Text = "Le champ est vide";
             }
@@ -202,27 +205,27 @@ namespace ProjetSynthese_1._0.Controleurs
             if (!frm.TxtArticle.Text.Equals(""))
             {
                 var sim = new SIM_Context();
-                
+
                 Utilisateur user = frm.Session["utilisateur"] as Utilisateur;
                 var result = from a in sim.Stocks
                              where a.numFiliale == user.numFiliale
                              && a.Article.nom.ToUpper().StartsWith(frm.TxtArticle.Text.ToUpper())
                              && a.qteEnStock > 0
-                            select new
-                            {
-                                NumArticle = a.numArticle,
-                                NomArticle = a.Article.nom,
-                                Description = a.Article.description,
-                                PrixVente=a.Article.prixVente,
-                                QuantiteEnStock = a.qteEnStock
-                            };
+                             select new
+                             {
+                                 NumArticle = a.numArticle,
+                                 NomArticle = a.Article.nom,
+                                 Description = a.Article.description,
+                                 PrixVente = a.Article.prixVente,
+                                 QuantiteEnStock = a.qteEnStock
+                             };
 
                 if (result.Count() > 0)
                 {
                     frm.GridArticle.DataSource = result.ToList();
                     frm.GridArticle.DataBind();
                 }
-                
+
             }
         }
 
