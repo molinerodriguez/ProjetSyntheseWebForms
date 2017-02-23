@@ -26,11 +26,6 @@ namespace ProjetSynthese_1._0
             GestionFournisseur.AfficherInfosFournisseur(this);
         }
 
-        //protected void txtArticle_TextChanged(object sender, EventArgs e)
-        //{
-        //    //Lister des articles
-        //    GestionArticle.ListerArticles(this);
-        //}
 
         protected void gridArticles_SelectedIndexChanged(object sender, EventArgs e)
         {
