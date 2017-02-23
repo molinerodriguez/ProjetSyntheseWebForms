@@ -13,11 +13,25 @@ namespace ProjetSynthese_1._0
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CharcherNumeroBonDistribution();
 
         }
 
+        private void CharcherNumeroBonDistribution()
+        {
+            Utilisateur user = Session["utilisateur"] as Utilisateur;
+            var sim = new SIM_Context();
+            var result = from b in sim.BonDistributions
+                         where b.numFiliale == user.numFiliale
+                         select b;
+
+            DDLNumBonDistribution.DataSource = result.ToList();
+            DDLNumBonDistribution.DataTextField = "numBonDistribution";
+            DDLNumBonDistribution.DataBind();
+        }
+
         #region Proprietes
-        public TextBox TxtNumBondistribution { get { return this.txtNumBondistribution; } }
+        public DropDownList DDLNumBonDistribution { get { return this.ddlNumBonDistribution; } }
         public TextBox TxtNomFiliale { get { return this.txtNomFiliale; } }
         public Button BtnRechercher { get { return this.btnRechercher; } }
         public TextBox TxtDateBonDistribution { get { return this.txtDateBonDistribution; } }
@@ -35,7 +49,9 @@ namespace ProjetSynthese_1._0
             BonDistribution bnd = null;
             using (var sim = new SIM_Context())
             {
-                bnd = sim.BonDistributions.Find(int.Parse(this.TxtNumBondistribution.Text));
+                bnd = sim.BonDistributions.Find(int.Parse(this.DDLNumBonDistribution.SelectedItem.Text));
+
+
                 if (bnd != null)
                 {
                     foreach (LigneBonDistribution l in bnd.LigneBonDistributions)
@@ -63,10 +79,18 @@ namespace ProjetSynthese_1._0
 
                         }
                     }
+
+
+
                     sim.SaveChanges();
                     //Message de confirmation!
                     LblResultatRecevoirBonDistribution.Text = "Le bon a été reçu avec succes!";
                     BtnRecevoir.Enabled = false;
+
+                    //efface le bon recu!(juste pour demonstration pour simuler la reception correct!!!)
+                    //sim.NotificationBonDistributions.Remove(sim.NotificationBonDistributions.Find(bnd.numBonDistribution));
+                    sim.BonDistributions.Remove(bnd);
+                    sim.SaveChanges();
                 }
             }
         }
@@ -87,10 +111,10 @@ namespace ProjetSynthese_1._0
                 BonDistribution bnd = null;
                 using (var sim = new SIM_Context())
                 {
-                    bnd = sim.BonDistributions.Find(int.Parse(this.TxtNumBondistribution.Text));
+                    bnd = sim.BonDistributions.Find(int.Parse(this.DDLNumBonDistribution.SelectedItem.Text));
                     if (bnd != null)
                     {
-                        this.TxtNumBondistribution.Text = bnd.numBonDistribution.ToString();
+                        //this.TxtNumBondistribution.Text = bnd.numBonDistribution.ToString();
                         this.TxtNomFiliale.Text = bnd.Filiale.nom;
                         this.TxtDateBonDistribution.Text = bnd.dateBonDistribution.ToShortDateString();
                         this.GridBonDistribution.DataSource = (from b in bnd.LigneBonDistributions
@@ -105,11 +129,16 @@ namespace ProjetSynthese_1._0
                         this.GridBonDistribution.DataBind();
 
                     }
+                    else
+                    {
+                        lblResultatNumeroBonDistribution.Text = "Bon de distribution n'existe pas";
+                        return;
+                    }
                     lblResultatNumeroBonDistribution.Text = "";
                     BtnRecevoir.Enabled = true;
                     BtnImprimer.Enabled = true;
                     BtnRechercher.Enabled = false;
-                    txtNumBondistribution.Enabled = false;
+                    DDLNumBonDistribution.Enabled = false;
                 }
 
             }

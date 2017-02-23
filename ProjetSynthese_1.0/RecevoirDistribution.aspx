@@ -12,7 +12,9 @@
                 <asp:Label ID="lblNumeroBonDitribution" runat="server" Text="Numéro bon distribution"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="txtNumBondistribution" runat="server" CssClass="form-control"></asp:TextBox>
+                <%--<asp:TextBox ID="txtNumBondistribution" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                <asp:DropDownList ID="ddlNumBonDistribution" runat="server" CssClass="form-control"></asp:DropDownList>
+
                 <asp:Label ID="lblResultatNumeroBonDistribution" runat="server" Text="" ForeColor="Red"></asp:Label>
             </td>
             <td>
